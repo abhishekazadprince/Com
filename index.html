@@ -119,6 +119,14 @@
         .summary-box ul { margin: 0; padding-left: 1.25rem; color: #334155; }
         .dark .summary-box ul { color: #cbd5e1; }
         .summary-box li { margin-bottom: 0.5rem; }
+        
+        .calculation-box { background-color: #f1f5f9; border-left: 4px solid #64748b; padding: 1.5rem; margin: 2rem 0; border-radius: 0 0.75rem 0.75rem 0; font-family: 'Inter', sans-serif; }
+        .dark .calculation-box { background-color: #1e293b; border-left-color: #94a3b8; }
+        .calculation-box h4 { margin-top: 0; margin-bottom: 1rem; color: #334155; font-weight: 700; font-size: 1.125rem; }
+        .dark .calculation-box h4 { color: #f1f5f9; }
+        .calculation-box .step { margin-bottom: 0.75rem; }
+        .calculation-box .step strong { color: #0f172a; }
+        .dark .calculation-box .step strong { color: #f8fafc; }
 
         details.sidenote { background-color: #f5f3ff; border: 1px solid #ede9fe; border-radius: 0.75rem; padding: 1rem 1.25rem; margin: 2rem 0; transition: all 0.3s ease; }
         .dark details.sidenote { background-color: rgba(76, 29, 149, 0.1); border-color: rgba(91, 33, 182, 0.5); }
@@ -145,6 +153,13 @@
         .dark input[type=range]::-webkit-slider-thumb { background: #60a5fa; }
         input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: #cbd5e1; border-radius: 2px; }
         .dark input[type=range]::-webkit-slider-runnable-track { background: #475569; }
+
+        /* Button styles */
+        .btn-primary { background: #2563eb; color: #ffffff; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: background 0.2s, transform 0.1s; border: none; font-family: 'Inter', sans-serif; display: inline-flex; align-items: center; justify-content: center; }
+        .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); }
+        .btn-primary:active { transform: translateY(1px); }
+        .dark .btn-primary { background: #3b82f6; }
+        .dark .btn-primary:hover { background: #60a5fa; color: #1e3a8a; }
 
         /* Back to top button transition */
         #back-to-top { opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease; transform: translateY(20px); }
@@ -217,7 +232,7 @@
                     <p class="text-xl text-slate-600 dark:text-slate-400 mb-2">From Counting Objects to Representing Reality</p>
                     <div class="flex items-center text-sm font-medium text-slate-500 dark:text-slate-500">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        Est. reading time: 105 mins
+                        Est. reading time: 135 mins
                     </div>
                 </header>
 
@@ -280,7 +295,6 @@
                     <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
                 </section>
 
-                <!-- Chapter 2 -->
                 <section id="chapter-2" class="scroll-mt-24">
                     <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 2</h2>
                     <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Archimedes and the Birth of Moments</h3>
@@ -374,7 +388,7 @@
                     <p>This leads to the deepest interpretation of the center of mass: <em>Replace many masses by a single equivalent mass placed at one special point.</em> This replacement preserves the total "mass × position" quantity.</p>
                     <p>That is why when studying motion, an entire complicated system often behaves as if all its mass were concentrated at the center of mass. A cricket ball spinning through the air, or the Earth-Moon system orbiting the Sun can all be treated as one particle located at their center of mass when analyzing translational motion. It compresses many particles into one effective point.</p>
 
-                    <p>Archimedes solved the physical balance, replacing scattered masses with a single point. But it would take centuries for mathematicians to realize this mechanical trick held the key to understanding human data, wealth, and statistics.</p>
+                    <p>Archimedes solved the physical balance, replacing scattered masses with a single point. But it would take centuries for mathematicians to realize this mechanical trick held the key to understanding human data, wealth, and statistics. And that transition begins with the most mundane of daily calculations: the average.</p>
 
                     <div class="summary-box">
                         <h4>Chapter 2 Summary</h4>
@@ -386,7 +400,6 @@
                     <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
                 </section>
 
-                <!-- Chapter 3 -->
                 <section id="chapter-3" class="scroll-mt-24">
                     <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 3</h2>
                     <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Center of Mass and Weighted Averages</h3>
@@ -433,7 +446,7 @@
                     
                     <p>This is why center of mass appears everywhere, under different names: Balance point, Weighted mean, Expectation value. It is not a mysterious new concept. Mathematically, it is simply a weighted average.</p>
 
-                    <p>But as powerful as the first moment is, it suffers from a fatal flaw. It compresses too aggressively. The first moment finds the perfect point of balance. But what happens if the object is subjected to bending forces? For that, we need a heavier probe.</p>
+                    <p>But as powerful as the first moment is, it suffers from a fatal flaw. It compresses too aggressively. The first moment finds the perfect point of balance. But what happens if the object is subjected to forces that don't just shift it, but bend it? To answer that, we must move from balance to rigidity.</p>
 
                     <div class="summary-box">
                         <h4>Chapter 3 Summary</h4>
@@ -446,7 +459,6 @@
                     <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
                 </section>
 
-                <!-- Chapter 4 -->
                 <section id="chapter-4" class="scroll-mt-24">
                     <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 4</h2>
                     <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">The Geometry of Rigidity: The Second Moment</h3>
@@ -518,7 +530,7 @@
                         <p class="text-base m-0">When building complex bridges, engineers don't re-integrate every shape from scratch. They use the Parallel Axis Theorem: \( I = I_{centroid} + Ad^2 \). This is a masterclass in information compression. It decouples the inherent shape of a geometry (\( I_{centroid} \)) from its position in space (\( Ad^2 \)). It mathematically proves that shifting area away from the center (\(d\)) increases stiffness by the square of that distance.</p>
                     </div>
 
-                    <p>The second moment proved that squaring the distance yields profound physical insights into static rigidity. But what happens if the object isn't just sitting there? What happens if it starts to move?</p>
+                    <p>The second moment proved that squaring the distance yields profound physical insights into static rigidity. But what happens if the object isn't just sitting there holding weight? What happens if that object begins to spin?</p>
 
                     <div class="summary-box">
                         <h4>Chapter 4 Summary</h4>
@@ -532,7 +544,6 @@
                     <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
                 </section>
 
-                <!-- Chapter 5 (NEW) -->
                 <section id="chapter-5" class="scroll-mt-24">
                     <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 5</h2>
                     <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">The Dynamics of Rotation: The Second Moment in Motion</h3>
@@ -592,21 +603,19 @@
                     <figure class="my-10 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 select-none font-sans overflow-hidden relative">
                         <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-red-500/10 dark:bg-red-400/10 rounded-full blur-xl"></div>
                         <h4 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2 mt-0">Interactive: The Rolling Race</h4>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-snug">Drag the time slider to roll the objects down the ramp. Even though they weigh exactly the same, the universe only "sees" their Second Moment. The Solid Cylinder (\(I=0.5MR^2\)) accelerates faster than the Hollow Ring (\(I=1.0MR^2\)).</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-snug">Press play to roll the objects down the ramp. Even though they weigh exactly the same, the universe only "sees" their Second Moment. The Solid Cylinder (\(I=0.5MR^2\)) accelerates faster than the Hollow Ring (\(I=1.0MR^2\)).</p>
                         
                         <canvas id="sim-race" width="800" height="300" class="w-full h-auto bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 mb-6"></canvas>
                         
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-                            <div class="col-span-1 md:col-span-2">
-                                <div class="flex justify-between text-sm font-semibold text-red-600 dark:text-red-400 mb-1">
-                                    <span>Time (\(t\))</span>
-                                </div>
-                                <input type="range" id="slide-race-t" min="0" max="1" step="0.01" value="0">
-                            </div>
+                        <div class="grid grid-cols-1 gap-x-8 gap-y-4 text-center">
+                            <button id="btn-race-toggle" class="btn-primary mx-auto w-48">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                Play Race
+                            </button>
                         </div>
                     </figure>
 
-                    <p>The race down the ramp proves something profound. Gravity cannot see the individual atoms of the cylinder. It can only "see" the cylinder's first moment (mass) and second moment (inertia). The universe itself uses mathematical compression to compute physics.</p>
+                    <p>The race down the ramp proves something profound. Gravity cannot see the individual atoms of the cylinder. It can only "see" the cylinder's first moment (mass) and second moment (inertia). The universe itself uses mathematical compression to compute physics. The square is a powerful tool, but is it the only one? What happens when we push the powers even higher?</p>
 
                     <div class="summary-box">
                         <h4>Chapter 5 Summary</h4>
@@ -619,7 +628,6 @@
                     <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
                 </section>
 
-                <!-- Chapter 6 -->
                 <section id="chapter-6" class="scroll-mt-24">
                     <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 6</h2>
                     <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Why Powers Matter</h3>
@@ -634,7 +642,7 @@
                     <p>Imagine two villages. Village A contains 100 people tightly clustered. Village B also contains 100 people spread over many square kilometers. If population (first moment) is the only measurement available, the villages appear identical. A second measurement—measuring spread—becomes necessary. This pattern appears throughout science.</p>
 
                     <h4>A Hierarchy of Sensitivity</h4>
-                    <p>The powers form a natural hierarchy. Each successive power probes finer aspects of a distribution:</p>
+                    <p>The powers form a natural mathematical magnifying glass. By multiplying a shape by \(x^n\) and integrating, we interrogate the shape. Each successive power acts as a specific filter:</p>
                     <ul>
                         <li><strong>Zeroth Moment (\( \int x^0 dm \)):</strong> Measures total quantity (How much?).</li>
                         <li><strong>First Moment (\( \int x^1 dm \)):</strong> Measures location (Where? The Centroid).</li>
@@ -642,7 +650,29 @@
                         <li><strong>Third Moment (\( \int x^3 dm \)):</strong> Measures asymmetry (skewness). Odd powers preserve the negative sign, allowing us to distinguish left from right imbalances.</li>
                         <li><strong>Fourth Moment (\( \int x^4 dm \)):</strong> Measures extremes (kurtosis). Highly sensitive to rare, "tail" behaviors because \(10^4 = 10,000\).</li>
                     </ul>
-                    <p>Higher powers emphasize increasingly distant points. Imagine a mathematical magnifying glass: each new power increases sensitivity to the edges of reality.</p>
+
+                    <!-- SIMULATION 15 (NEW): The Power Probe -->
+                    <figure class="my-10 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 select-none font-sans overflow-hidden relative">
+                        <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-pink-500/10 dark:bg-pink-400/10 rounded-full blur-xl"></div>
+                        <h4 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2 mt-0">Interactive: The Moment Magnifier</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-snug">Select a Power \(n\). The blue curve is our data distribution. The dashed line is our "Probe" (\(x^n\)). The shaded pink area is the mathematical Moment (Data $\times$ Probe). Notice how higher powers completely ignore the center and heavily magnify the distant tails of the data.</p>
+                        
+                        <canvas id="sim-powers" width="800" height="300" class="w-full h-auto bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 mb-6"></canvas>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm font-semibold text-pink-600 dark:text-pink-400 mb-1">
+                                    <span>Polynomial Power (\(n\))</span>
+                                    <span id="val-power-n">n = 2 (Spread)</span>
+                                </div>
+                                <input type="range" id="slide-power-n" min="0" max="6" step="1" value="2">
+                            </div>
+                            <div class="flex items-center justify-center bg-slate-100 dark:bg-slate-700/50 p-2 rounded-lg border border-slate-200 dark:border-slate-600/50">
+                                <span class="text-sm font-medium text-slate-600 dark:text-slate-300">Extracted Moment: </span>
+                                <span id="val-power-result" class="ml-2 text-lg font-bold text-pink-600 dark:text-pink-400">0.00</span>
+                            </div>
+                        </div>
+                    </figure>
 
                     <h4>The Ultimate Compression: The Moment Generating Function</h4>
                     <p>If storing a sequence of moments \( (M_0, M_1, M_2 \dots) \) compresses reality, mathematicians eventually found a way to compress that sequence itself into a single, elegant equation known as the Moment Generating Function (MGF).</p>
@@ -663,7 +693,6 @@
                     <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
                 </section>
 
-                <!-- Chapter 7 -->
                 <section id="chapter-7" class="scroll-mt-24">
                     <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 7</h2>
                     <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Taylor Series and the Philosophy of Local Knowledge</h3>
@@ -706,6 +735,14 @@
                         </div>
                     </figure>
 
+                    <div class="history-box">
+                        <h4>
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                            Historical Note: Brook Taylor & Indian Calculus
+                        </h4>
+                        <p class="text-base m-0">While Brook Taylor published his series in 1715, similar power series expansions for sine, cosine, and arctangent were discovered by Madhava of Sangamagrama in India over 300 years earlier (around 1400 CE). The desire to calculate accurate astronomical tables drove the invention of polynomial approximations long before modern European calculus.</p>
+                    </div>
+
                     <p>Taylor proved that the distant future of a curve is secretly folded into its present point. This was not just a mathematical curiosity; it was exactly the weapon Isaac Newton needed to decode the universe.</p>
 
                     <div class="summary-box">
@@ -719,13 +756,12 @@
                     <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
                 </section>
 
-                <!-- Chapter 8 -->
                 <section id="chapter-8" class="scroll-mt-24">
                     <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 8</h2>
-                    <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Newtonian Mechanics and the Rise of Polynomial Physics</h3>
+                    <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Newtonian Mechanics and Phase Space Compression</h3>
                     <div class="ch-meta">
                         <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        Est. read: 4 mins
+                        Est. read: 6 mins
                     </div>
 
                     <p>Taylor expansions ceased to be merely mathematical tools; they became the language of physics itself. Newtonian mechanics transformed the study of nature into the study of derivatives, differential equations, and polynomial approximations.</p>
@@ -738,12 +774,34 @@
 
                     <p>Expand position around time \( t \):</p>
                     \[ x(t+h) = x(t) +h\frac{dx}{dt} +\frac{h^2}{2!}\frac{d^2x}{dt^2} + \cdots \]
-                    <p>Future motion is encoded within present derivatives. This became one of the central assumptions of classical science: polynomial thinking.</p>
+                    <p>Future motion is encoded within present derivatives. This became one of the central assumptions of classical science: polynomial thinking. This leads to a profound deterministic philosophy. If you know the exact initial conditions, the Taylor expansion allows you to unroll the entire future.</p>
 
-                    <h4>Differential Equations as Compression</h4>
-                    <p>Consider a planetary orbit. The complete trajectory contains infinitely many points. Instead of storing all points individually, Newton writes: \( F=ma \), or</p>
-                    \[ m\frac{d^2x}{dt^2} = F(x,t) \]
-                    <p>An entire motion is compressed into a differential equation. A small symbolic expression generates an enormous amount of information.</p>
+                    <h4>Phase Space: The Ultimate Zip File</h4>
+                    <p>Consider a pendulum swinging back and forth. The complete trajectory contains infinitely many points stretching into the future. How does nature "store" this motion? Instead of storing all points individually, physics uses <strong>Phase Space</strong>—a graph of Position vs. Momentum.</p>
+                    
+                    <!-- SIMULATION 16 (NEW): Phase Space Orbital Compression -->
+                    <figure class="my-10 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 select-none font-sans overflow-hidden relative">
+                        <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-indigo-500/10 dark:bg-indigo-400/10 rounded-full blur-xl"></div>
+                        <h4 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2 mt-0">Interactive: Phase Space Compression</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-snug">Left: A physical pendulum swinging endlessly through time. Right: The exact same motion mapped in Phase Space (Position vs. Velocity). Notice how the infinite, complex motion in real space is perfectly compressed into a single, static geometric circle representing Conservation of Energy.</p>
+                        
+                        <canvas id="sim-phasespace" width="800" height="300" class="w-full h-auto bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 mb-6"></canvas>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm font-semibold text-indigo-600 dark:text-indigo-400 mb-1">
+                                    <span>Energy Level (Amplitude)</span>
+                                </div>
+                                <input type="range" id="slide-phase-amp" min="0.1" max="1.5" step="0.1" value="0.8">
+                            </div>
+                            <div class="flex items-center justify-center bg-slate-100 dark:bg-slate-700/50 p-2 rounded-lg border border-slate-200 dark:border-slate-600/50">
+                                <span class="text-sm font-medium text-slate-600 dark:text-slate-300">Phase Shape: </span>
+                                <span class="ml-2 text-lg font-bold text-indigo-600 dark:text-indigo-400">1D Manifold (Ellipse)</span>
+                            </div>
+                        </div>
+                    </figure>
+
+                    <p>The differential equation \( m\frac{d^2x}{dt^2} = F(x) \) acts as a mathematical "zip file". The entire infinite motion of the pendulum is restricted to a single 1D circle in Phase Space. A tiny symbolic expression compresses an enormous amount of physical information across all of time.</p>
 
                     <p>Newton's differential equations governed clockwork planets with absolute certainty. But what happens when the clockwork breaks? When certainty vanishes, the mechanical moments of Archimedes must be reborn as the mathematics of chance.</p>
 
@@ -752,13 +810,12 @@
                         <ul>
                             <li>Newtonian mechanics shifted focus from tracking raw positions to tracking the derivatives of motion.</li>
                             <li>Future trajectories are generated entirely from local conditions using Taylor-like polynomial expansion.</li>
-                            <li>Differential equations serve as extreme mathematical compression, encoding infinite motion paths into brief symbolic rules.</li>
+                            <li>Phase Space geometrically compresses infinite physical motion through time into static shapes governed by conservation laws.</li>
                         </ul>
                     </div>
                     <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
                 </section>
 
-                <!-- Chapter 9 -->
                 <section id="chapter-9" class="scroll-mt-24">
                     <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 9</h2>
                     <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Probability, Statistics, and the Escape of Moments</h3>
@@ -801,9 +858,11 @@
                         </div>
                     </figure>
 
-                    <p>The Gaussian distribution provides the perfect example of compression. The formula \( p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \) is entirely determined by just two numbers: the mean (\( \mu \)) and variance (\( \sigma^2 \)). An infinite bell curve is compressed into two moments.</p>
+                    <h4>The Moment Problem: Can a Fingerprint Reconstruct a Human?</h4>
+                    <p>Because mathematics constantly replaces complex objects with sequences of compressed numbers (moments), a deep philosophical question arises: <em>If we possess an infinite sequence of these measurements, can we perfectly reconstruct the original reality?</em> This is known as the "Moment Problem."</p>
+                    <p>Surprisingly, the answer is not always yes. Knowing a few moments eliminates possibilities, but many different realities might generate the exact same set of lower-order measurements. This reveals a vital truth: measurements and representations are not identical to reality. Every representation is a carefully selected, lossy compression of it.</p>
 
-                    <p>By the 19th century, probability was primarily a tool to measure our ignorance of a deterministic world. But in the 1920s, the universe delivered a shock: probability wasn't just in our minds; it was built into the physical fabric of reality. The mechanical moment was about to enter the quantum realm.</p>
+                    <p>By the 19th century, probability was primarily a tool to measure our ignorance of a deterministic world. We used probability because we lacked perfect information. But in the 1920s, the universe delivered a shock: probability wasn't just in our minds; it was built into the physical fabric of reality. The statistical moment was about to be weaponized inside the quantum realm.</p>
 
                     <div class="summary-box">
                         <h4>Chapter 9 Summary</h4>
@@ -811,49 +870,59 @@
                             <li>Moments transcended physical mechanics to describe probability and uncertainty.</li>
                             <li>The statistical mean is mechanically equivalent to the center of mass.</li>
                             <li>The Gaussian distribution compresses complex probability spaces using just the first two moments.</li>
+                            <li>The "Moment Problem" proves that our mathematical representations are useful compressions, but not exact mirrors of reality.</li>
                         </ul>
                     </div>
                     <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
                 </section>
 
-                <!-- Chapter 10 -->
                 <section id="chapter-10" class="scroll-mt-24">
                     <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 10</h2>
                     <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Quantum Mechanics and the Transformation of Moments</h3>
                     <div class="ch-meta">
                         <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        Est. read: 6 mins
+                        Est. read: 7 mins
                     </div>
 
-                    <p>In classical physics, a particle possesses exact position and momentum. Quantum mechanics introduced a radically different framework. Instead of assigning a definite position, quantum theory introduces a complex, unobservable wavefunction \( \psi(x) \). What can be observed in reality is \( |\psi(x)|^2 \), which acts as a probability density. Probability becomes fundamental to the object itself.</p>
+                    <p>In classical physics, a particle possesses exact position and momentum. You can point to a baseball and say, "It is exactly here, moving exactly this fast." Quantum mechanics introduced a radically different framework. Instead of assigning a definite position, quantum theory introduces a complex, unobservable <strong>wavefunction</strong> \( \psi(x) \). A particle is no longer a "thing" in a single place; it is a "probability cloud" smeared across space.</p>
 
                     <h4>The Return of Moments</h4>
-                    <p>Because the true nature of the particle (\(\psi\)) is an infinite-dimensional spread of possibilities, we must compress it into observable reality using mathematical operators. When we measure the average position, we calculate:</p>
-                    \[ \langle x \rangle = \int x|\psi(x)|^2dx \]
-                    <p>This is called an expectation value. But look closely. Structurally, it is the exact same equation as Archimedes' center of mass! The physical balance beam has been resurrected to find the "balance point" of quantum probability.</p>
+                    <p>Because the true nature of the particle (\(\psi\)) is an infinite-dimensional spread of possibilities, we must compress it into observable reality using mathematical operators. If we want to know the average position where the particle might be found upon measurement, we calculate the Expectation Value.</p>
+                    
+                    <div class="calculation-box">
+                        <h4>Calculating Quantum Reality</h4>
+                        <div class="step"><strong>Given:</strong> A probability cloud defined by a wavefunction \( \psi(x) \). We want to find the average position using the position operator \( \hat{x} \).</div>
+                        <div class="step"><strong>Governing Principle:</strong> The Born Rule & Expectation Value.</div>
+                        <div class="step"><strong>Formula:</strong> \[ \langle x \rangle = \int_{-\infty}^{\infty} \psi^*(x) \, \hat{x} \, \psi(x) \, dx \]</div>
+                        <div class="step"><strong>Simplification:</strong> Because the probability density is \( |\psi(x)|^2 \), this becomes: \[ \langle x \rangle = \int x|\psi(x)|^2dx \]</div>
+                        <div class="step"><strong>Physical Meaning:</strong> This is literally the Center of Mass formula applied to a cloud of probability! The physical balance beam has been resurrected to find the "balance point" of quantum likelihood.</div>
+                    </div>
 
-                    <!-- SIMULATION 5: Quantum Harmonic Oscillator -->
+                    <!-- SIMULATION 17 (NEW): Quantum Coherent State -->
                     <figure class="my-10 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 select-none font-sans overflow-hidden relative">
                         <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-purple-500/10 dark:bg-purple-400/10 rounded-full blur-xl"></div>
-                        <h4 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2 mt-0">Interactive: Quantum Probability Density</h4>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-snug">Visualizing the probability density \( |\psi_n(x)|^2 \) of a quantum particle at different energy states (n). Notice how the particle spreads out at higher states, increasing the second moment (uncertainty/spread) \( \langle x^2 \rangle \).</p>
+                        <h4 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2 mt-0">Interactive: The Quantum Coherent State</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-snug">Watch a quantum wavefunction \(|\psi(x,t)|^2\) oscillate in a parabolic potential well. While the wave itself is smeared out (Quantum Spread), its <strong>First Moment</strong> (the red dot, \(\langle x \rangle\)) perfectly obeys the classical Newtonian laws of motion, swinging exactly like a pendulum.</p>
                         
-                        <canvas id="sim-quantum" width="800" height="300" class="w-full h-auto bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 mb-6"></canvas>
+                        <canvas id="sim-coherent" width="800" height="300" class="w-full h-auto bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 mb-6"></canvas>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
                             <div>
                                 <div class="flex justify-between text-sm font-semibold text-rose-600 dark:text-rose-400 mb-1">
-                                    <span>Energy State (n)</span>
-                                    <span id="val-quantum-n">State: n = 0</span>
+                                    <span>Quantum Spread (\(\sigma\))</span>
+                                    <span id="val-coh-sig">0.5</span>
                                 </div>
-                                <input type="range" id="slide-quantum-n" min="0" max="5" step="1" value="0">
+                                <input type="range" id="slide-coh-sig" min="0.2" max="1.5" step="0.1" value="0.5">
                             </div>
                             <div class="flex items-center justify-center bg-slate-100 dark:bg-slate-700/50 p-2 rounded-lg border border-slate-200 dark:border-slate-600/50">
-                                <span class="text-sm font-medium text-slate-600 dark:text-slate-300">Spread: </span>
-                                <span id="val-quantum-spread" class="ml-2 text-lg font-bold text-purple-600 dark:text-purple-400">&langle;x&sup2;&rangle; &prop; 0.5</span>
+                                <span class="text-sm font-medium text-slate-600 dark:text-slate-300">Ehrenfest's Theorem: </span>
+                                <span class="ml-2 text-lg font-bold text-purple-600 dark:text-purple-400">\(\langle x \rangle\) is Classical</span>
                             </div>
                         </div>
                     </figure>
+
+                    <h4>The Second Moment: The Inertia of Uncertainty</h4>
+                    <p>If the first moment (\(\langle x \rangle\)) gives us the classical position, the second moment (\(\langle x^2 \rangle\)) gives us the spread, or uncertainty. This is conceptually identical to the Moment of Inertia in structural engineering. A highly uncertain, "smeared out" quantum particle has a large "moment of inertia of probability"—it is hard to pin down exactly where it is, just as a flywheel with its mass on the edges is hard to stop spinning.</p>
 
                     <div class="insight-box">
                         <h4>
@@ -863,20 +932,20 @@
                         <p class="text-base m-0">The famous equation \( \Delta x \Delta p \ge \frac{\hbar}{2} \) uses the symbol \( \Delta \), which represents standard deviation (the square root of variance). The Uncertainty Principle is fundamentally a geometric statement about second moments. It declares a strict mathematical limit on how tightly the second moments of position and momentum can be compressed simultaneously.</p>
                     </div>
 
-                    <p>Look at the Hydrogen atom. Its spectral lines—the specific colors of light it emits—are perfectly discrete. These lines are just "Fourier-like coefficients" (energy eigenvalues) representing the universe's most compressed code. Quantum mechanics forced us to stop looking at 'where' a particle is, and start looking at the 'measurements' we can extract from it. This radical shift gave birth to Functional Analysis.</p>
+                    <p>Quantum mechanics forced us to stop looking at 'where' a particle is, and start looking at the 'measurements' we can extract from it. We never see the whole wave; we only see the numbers it spits out when we probe it. This radical shift gave birth to Functional Analysis.</p>
 
                     <div class="summary-box">
                         <h4>Chapter 10 Summary</h4>
                         <ul>
                             <li>In Quantum Mechanics, exact positions are replaced by probability wavefunctions.</li>
                             <li>Expectation values in quantum physics are simply statistical moments calculated over these wavefunctions.</li>
+                            <li>The spread of a quantum particle acts like a "moment of inertia" of probability.</li>
                             <li>The Heisenberg Uncertainty principle is built entirely on the mathematical limits of the second moment (variance).</li>
                         </ul>
                     </div>
                     <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
                 </section>
 
-                <!-- Chapter 11 -->
                 <section id="chapter-11" class="scroll-mt-24">
                     <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 11</h2>
                     <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Functional Analysis and the Philosophy of Probes</h3>
@@ -888,9 +957,14 @@
                     <p>What is the essence of a moment? Is it about mass? Is it about probability? Is it about quantum states? Or is there something deeper? Mathematicians realized the true importance of a moment is not the object being studied, but the measurement itself.</p>
 
                     <h4>The Idea of a Probe</h4>
-                    <p>Imagine a doctor examining a patient. A doctor rarely sees every process occurring inside the body simultaneously. Instead, the doctor performs specific tests: Blood pressure, temperature, heart rate. Each test acts as a <em>probe</em>. Functional analysis adopts exactly this philosophy. A complicated mathematical function—like a quantum state—exists in an infinite-dimensional space (a Hilbert space) that we cannot fully visualize. It becomes known entirely through the probes we run against it.</p>
+                    <p>Imagine a doctor examining a patient. A doctor rarely sees every process occurring inside the body simultaneously. Instead, the doctor performs specific tests: Blood pressure, temperature, heart rate. Each test acts as a <em>probe</em>. Functional analysis adopts exactly this philosophy. A complicated mathematical function—like a quantum state—exists in an infinite-dimensional space that we cannot fully visualize. It becomes known entirely through the probes we run against it.</p>
 
-                    <p>The mathematical operation of "probing" is called the <strong>Inner Product</strong>. When we calculate a moment like \( \int x^n f(x)\,dx \), we are essentially multiplying a complex hidden signal \( f(x) \) by a specific probe \( x^n \) and adding up the result. We are asking the function: <em>"How much of this specific probe do you contain?"</em></p>
+                    <h4>The Inner Product: The Ultimate Mathematical Probe</h4>
+                    <p>To understand this, we must make a leap from basic geometry to infinite dimensions. In a 2D plane, if you want to know how much two vectors overlap, you calculate the <strong>Dot Product</strong>: \( \mathbf{a} \cdot \mathbf{b} = a_1 b_1 + a_2 b_2 \). If the result is large, they point in the same direction. If it's zero, they are completely independent (perpendicular/orthogonal).</p>
+                    <p>Functional Analysis scales this idea up to infinity. A function \( f(x) \) is just a vector with infinitely many points. To see how much one function overlaps with another, we use the continuous version of the dot product, called the <strong>Inner Product</strong>:</p>
+                    \[ \langle f, g \rangle = \int f(x)g(x)\,dx \]
+
+                    <p>When we calculate a moment like \( \int x^n f(x)\,dx \), we are essentially taking the inner product of a complex hidden signal \( f(x) \) and a specific probe \( x^n \). We are asking the function: <em>"How much of this specific probe do you contain?"</em></p>
 
                     <!-- SIMULATION 9: Functional Probes -->
                     <figure class="my-10 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 select-none font-sans overflow-hidden relative">
@@ -923,20 +997,28 @@
 
                     <p>Notice the profound shift. We moved our attention from the object itself to the operations performed on the object. By sending in different probes—like radar pings into the dark—we reconstruct reality entirely through its mathematical echoes.</p>
 
-                    <p>If functional analysis tells us that our understanding depends entirely on the probes we use, a profound question arises: Are polynomial powers the <em>best</em> probes? A French mathematician studying heat was about to suggest a radically different alternative: Waves.</p>
+                    <div class="history-box">
+                        <h4>
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                            Historical Note: David Hilbert
+                        </h4>
+                        <p class="text-base m-0">David Hilbert realized that spaces of functions could be studied geometrically, possessing lengths, distances, and angles. How can two functions form an angle? Through the inner product. The concept of Hilbert spaces proved enormously powerful and eventually provided the strict mathematical foundation for all of quantum mechanics.</p>
+                    </div>
+
+                    <p>If functional analysis tells us that our understanding depends entirely on the probes we use, a profound question arises: Are polynomial powers the <em>only</em> good probes? A French mathematician studying the flow of heat was about to suggest a radically different alternative: Waves.</p>
 
                     <div class="summary-box">
                         <h4>Chapter 11 Summary</h4>
                         <ul>
                             <li>Functional analysis shifts focus from studying mathematical objects directly to studying the <em>measurements</em> we can extract from them.</li>
-                            <li>Moments are redefined not as physical properties, but as "probes" or "questions" we ask a function using the inner product.</li>
+                            <li>The Inner Product expands the geometric "dot product" to infinity, allowing us to see how much two complex functions overlap.</li>
+                            <li>Moments are redefined not as physical properties, but as specific mathematical "probes" using the inner product.</li>
                             <li>We never fully grasp a complex object; we construct measurements, and the collection of these measurements builds our understanding.</li>
                         </ul>
                     </div>
                     <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
                 </section>
 
-                <!-- Chapter 12 -->
                 <section id="chapter-12" class="scroll-mt-24">
                     <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 12</h2>
                     <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Taylor Series, Fourier Series, and Two Philosophies</h3>
@@ -952,20 +1034,28 @@
                     <p>Fourier begins differently. He uses oscillating waves. A complicated signal becomes a collection of simple waves:</p>
                     \[ f(x) = a_0 + \sum_{n=1}^{\infty} \left( a_n\cos nx +b_n\sin nx \right) \]
 
-                    <!-- SIMULATION 4: Fourier Synthesis -->
+                    <div class="insight-box">
+                        <h4>
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                            Physical Analogy: The Musical Chord
+                        </h4>
+                        <p class="text-base m-0">Imagine a musician striking a chord on a piano. To your ear, it sounds like a single, unified sound (the complex function). Fourier analysis proves that this sound is actually a combination of several fundamental, pure notes (sine waves) playing simultaneously. The Fourier transform acts like a mathematical prism, splitting the single complex sound wave into its constituent fundamental frequencies.</p>
+                    </div>
+
+                    <!-- SIMULATION 18 (NEW): Dynamic Fourier Epicycles -->
                     <figure class="my-10 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 select-none font-sans overflow-hidden relative">
                         <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-fuchsia-500/10 dark:bg-fuchsia-400/10 rounded-full blur-xl"></div>
-                        <h4 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2 mt-0">Interactive: Fourier Synthesis</h4>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-snug">Instead of polynomial powers, Fourier analysis uses oscillating waves as probes. See how stacking odd sine-wave harmonics progressively compresses and represents a complex square wave.</p>
+                        <h4 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2 mt-0">Interactive: Dynamic Fourier Epicycles</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-snug">Instead of polynomial powers, Fourier analysis uses rotating circles (phasors) as probes. Watch how stacking multiple rotating circles perfectly synthesizes a square wave in real-time. This is the mathematics behind JPEG image compression and audio processing.</p>
                         
                         <canvas id="sim-fourier" width="800" height="300" class="w-full h-auto bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 mb-6"></canvas>
                         
                         <div>
                             <div class="flex justify-between text-sm font-semibold text-fuchsia-600 dark:text-fuchsia-400 mb-1">
-                                <span>Number of Harmonics</span>
-                                <span id="val-fourier-n">1 Harmonic</span>
+                                <span>Number of Rotating Vectors (Harmonics)</span>
+                                <span id="val-fourier-n">1 Vector</span>
                             </div>
-                            <input type="range" id="slide-fourier-n" min="1" max="21" step="2" value="1">
+                            <input type="range" id="slide-fourier-n" min="1" max="11" step="2" value="1">
                         </div>
                     </figure>
 
@@ -975,11 +1065,11 @@
                             Expandable Side Note: Orthogonality
                         </summary>
                         <div class="mt-3 text-slate-700 dark:text-slate-300">
-                            <p>Why do Fourier coefficients work so well? Because sine and cosine functions are orthogonal. Roughly speaking, \( \int \sin(mx)\sin(nx)\,dx = 0 \) when \( m \neq n \). Different frequencies do not interfere. The situation resembles using perpendicular axes in geometry, allowing clean, independent data extraction.</p>
+                            <p>Why do Fourier coefficients work so well? Because sine and cosine functions are orthogonal. Roughly speaking, the inner product \( \int \sin(mx)\sin(nx)\,dx = 0 \) when \( m \neq n \). Different frequencies do not interfere. The situation resembles using perpendicular axes in geometry, allowing clean, independent data extraction.</p>
                         </div>
                     </details>
 
-                    <p>Fourier proved that waves have a magical property: they don't interfere with each other. Standard polynomials, however, are messy and overlapping. Could we mathematically 'tame' polynomials to make them act perfectly independent like Fourier's waves?</p>
+                    <p>Fourier proved that waves have a magical property: they don't interfere with each other. Standard polynomials, however, are messy and overlapping. Could we mathematically 'tame' polynomials to make them act perfectly independent like Fourier's waves? The answer requires a return to pure geometry.</p>
 
                     <div class="summary-box">
                         <h4>Chapter 12 Summary</h4>
@@ -992,7 +1082,6 @@
                     <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
                 </section>
 
-                <!-- Chapter 13 -->
                 <section id="chapter-13" class="scroll-mt-24">
                     <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 13</h2>
                     <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Orthogonal Polynomials</h3>
@@ -1001,12 +1090,12 @@
                         Est. read: 5 mins
                     </div>
 
-                    <p>Can we construct better probes? Simple powers (\(1, x, x^2, x^3\)) are often terribly inefficient because they are not geometrically independent. On a standard interval, \( x^2 \) and \( x^4 \) share substantial overlap. They both look like U-shapes. If you try to extract information using \(x^2\), you accidentally scoop up information that belongs to \(x^4\). Information becomes entangled.</p>
+                    <p>Can we construct better probes? Simple powers (\(1, x, x^2, x^3\)) are often terribly inefficient because they are not geometrically independent. On a standard interval, \( x^2 \) and \( x^4 \) share substantial overlap. They both look like U-shapes. If you try to extract information using an \(x^2\) probe, you accidentally scoop up information that actually belongs to \(x^4\). Information becomes <strong>entangled</strong>.</p>
 
                     <h4>The Perfection of Orthogonal Functions</h4>
-                    <p>Mathematicians sought probes that act completely independently, like perpendicular axes (x, y, z) in 3D geometry. This led to the discovery of <strong>Orthogonal Polynomials</strong>, such as Legendre, Hermite, and Chebyshev polynomials. By carefully mixing standard powers together, they created customized curves where the "inner product" overlap between any two different polynomials is exactly zero.</p>
+                    <p>Mathematicians sought probes that act completely independently, like perpendicular axes (x, y, z) in 3D geometry. This led to the discovery of <strong>Orthogonal Polynomials</strong>, such as Legendre, Hermite, and Chebyshev polynomials. By carefully mixing standard powers together (often using a method like the Gram-Schmidt process), they created customized curves where the "inner product" overlap between any two different polynomials is exactly zero.</p>
                     
-                    <p>These specialized probes ensured that the information extracted by one coefficient never bled into another. If you add a new term to your compression algorithm, you don't have to recalculate all the old ones.</p>
+                    <p>These specialized probes ensured that the information extracted by one coefficient never bled into another. If you add a new term to your compression algorithm to improve accuracy, you don't have to recalculate all the old ones.</p>
 
                     <!-- SIMULATION 10: Orthogonal Polynomials -->
                     <figure class="my-10 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 select-none font-sans overflow-hidden relative">
@@ -1055,12 +1144,20 @@
                     
                     <p>Historically, nature seemed to prefer these orthogonal tools; Hermite polynomials naturally govern quantum harmonic oscillators, and Chebyshev polynomials dominate numerical computing.</p>
 
+                    <div class="takeaway-box">
+                        <h4>
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            Key Takeaway
+                        </h4>
+                        <p class="text-base m-0">Mathematics advances by inventing better questions. Simple powers ask "How much \(x^n\)?", Fourier asks "How much frequency?", and Orthogonal Polynomials ask perfectly disentangled, independent questions, preventing information overlap.</p>
+                    </div>
+
                     <p>Orthogonal polynomials perfected the art of mathematical compression. But as the 21st century dawned, humanity faced a new kind of complexity: millions of pixels, billions of words, and petabytes of behavioral data. To compress <em>this</em> reality, the ancient moments would be weaponized inside artificial brains.</p>
 
                     <div class="summary-box">
                         <h4>Chapter 13 Summary</h4>
                         <ul>
-                            <li>Standard polynomial powers overlap geometrically, creating computational inefficiency.</li>
+                            <li>Standard polynomial powers overlap geometrically, creating computational inefficiency (entanglement).</li>
                             <li>Orthogonal polynomials (Legendre, Hermite) act as mathematically independent "perpendicular" probes.</li>
                             <li>These polynomials naturally map onto fundamental physical structures, like quantum oscillators.</li>
                         </ul>
@@ -1068,19 +1165,21 @@
                     <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
                 </section>
 
-                <!-- Chapter 14 -->
                 <section id="chapter-14" class="scroll-mt-24">
                     <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 14</h2>
                     <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Machine Learning and AI</h3>
                     <div class="ch-meta">
                         <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        Est. read: 7 mins
+                        Est. read: 8 mins
                     </div>
 
                     <p>When people hear "Artificial Intelligence," they often imagine something completely modern—massive data centers and deep neural networks. Yet, beneath these innovations lies the exact same ancient philosophical pattern: How can an enormously complicated object be represented by a manageable collection of numbers?</p>
 
+                    <h4>Features as Modern Moments</h4>
+                    <p>A digital photograph contains millions of pixels; no human or computer can process that raw complexity efficiently. In machine learning, we extract "features." A feature—whether it measures edge density or semantic patterns—acts exactly like a mathematical moment. The raw data remain hidden. The measurements become visible.</p>
+
                     <h4>The Covariance Matrix: The Inertia of Data</h4>
-                    <p>Recall the civil engineer who calculated the Moment of Inertia (\(I\)) to find the stiffest axis of an I-Beam. In Machine Learning, we do the exact same thing with a cloud of data points. We calculate the <strong>Covariance Matrix</strong>. This matrix is quite literally a mathematical tensor of <em>second moments</em>. It tells us how the data is spread out.</p>
+                    <p>Recall the civil engineer in Chapter 4 who calculated the Moment of Inertia (\(I\)) to find the stiffest axis of an I-Beam. In Machine Learning, we do the exact same thing with a cloud of high-dimensional data points. We calculate the <strong>Covariance Matrix</strong>. This matrix is quite literally a mathematical tensor of <em>second moments</em>. It tells us how the data is spread out.</p>
 
                     <p>When a data scientist performs Principal Component Analysis (PCA) to compress a 1000-dimensional dataset down to 10 dimensions, they are simply finding the "principal axes of bending" for that data cloud. What the civil engineer calls the optimal bending axis, the data scientist calls the Principal Component.</p>
 
@@ -1108,28 +1207,41 @@
                     </figure>
 
                     <h4>Finding the Weights: Gradient Descent</h4>
-                    <p>If neural networks rely on finding the optimal weighted combinations (\( w_i \)) to compress information, how do they actually discover these weights? The answer beautifully connects back to Taylor Series. Modern AI uses local derivatives to navigate the "loss landscape"—a mathematical terrain where the lowest valley represents the perfect set of weights.</p>
-                    <p>This process is formalized in an algorithm called Backpropagation and executed via Gradient Descent. Instead of trying to guess the global mathematical solution—which is impossible for billions of parameters—the AI relies entirely on local, infinitesimal knowledge to iteratively descend toward the optimal representation.</p>
+                    <p>If neural networks rely on finding the optimal weighted combinations (\( \sum w_i x_i \)) to compress information, how do they actually discover these weights? The answer beautifully connects back to Taylor Series. Modern AI uses local derivatives to navigate the "loss landscape"—a mathematical terrain where the lowest valley represents the perfect set of weights.</p>
+                    <p>This process is executed via <strong>Gradient Descent</strong>. Instead of trying to guess the global mathematical solution—which is impossible for billions of parameters—the AI relies entirely on local, infinitesimal knowledge to iteratively step toward the optimal representation.</p>
 
-                    <!-- SIMULATION 7: Gradient Descent -->
+                    <div class="calculation-box">
+                        <h4>Calculating a Gradient Descent Step</h4>
+                        <div class="step"><strong>Given:</strong> Current weight \( w = 3 \). Loss function \( L(w) = w^2 \). We want to find the bottom of the valley (\( w=0 \)).</div>
+                        <div class="step"><strong>Governing Principle:</strong> Gradient Descent (Minimize the error).</div>
+                        <div class="step"><strong>Formula:</strong> \[ w_{new} = w_{old} - \alpha \frac{dL}{dw} \]</div>
+                        <div class="step"><strong>Substitutions:</strong> The derivative (slope) is \( \frac{dL}{dw} = 2w = 6 \). Let the learning rate step size (\( \alpha \)) be \( 0.1 \).</div>
+                        <div class="step"><strong>Intermediate step:</strong> \[ w_{new} = 3 - 0.1(6) = 3 - 0.6 \]</div>
+                        <div class="step"><strong>Final result:</strong> \[ w_{new} = 2.4 \]</div>
+                        <div class="step"><strong>Meaning:</strong> By using local derivative knowledge (the Taylor slope), the machine successfully stepped the weight closer to the optimal value of 0.</div>
+                    </div>
+
+                    <!-- SIMULATION 19 (NEW): Animated Gradient Descent -->
                     <figure class="my-10 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 select-none font-sans overflow-hidden relative">
                         <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-emerald-500/10 dark:bg-emerald-400/10 rounded-full blur-xl"></div>
-                        <h4 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2 mt-0">Interactive: Gradient Descent</h4>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-snug">Adjust the "Weight" parameter to see how local knowledge (the gradient/slope, marked by the tangent line) guides the AI to step towards the bottom of the Loss landscape where error is minimized.</p>
+                        <h4 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2 mt-0">Interactive: Dynamic Gradient Descent</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-snug">Press "Descend" to watch the AI use local derivative knowledge (the tangent line) to iteratively unroll a path down the loss landscape, automatically finding the mathematical minimum.</p>
                         
                         <canvas id="sim-gradient" width="800" height="300" class="w-full h-auto bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 mb-6"></canvas>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-                            <div>
-                                <div class="flex justify-between text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-1">
-                                    <span>Current Weight (w)</span>
-                                    <span id="val-gd-w">3.00</span>
-                                </div>
-                                <input type="range" id="slide-gd-w" min="-5" max="5" step="0.1" value="3">
+                            <div class="flex gap-4">
+                                <button id="btn-gd-run" class="btn-primary w-full">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                    Run Descent
+                                </button>
+                                <button id="btn-gd-reset" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors w-full">
+                                    Reset
+                                </button>
                             </div>
                             <div class="flex items-center justify-center bg-slate-100 dark:bg-slate-700/50 p-2 rounded-lg border border-slate-200 dark:border-slate-600/50 gap-4 text-sm font-medium text-slate-600 dark:text-slate-300">
-                                <div>Gradient: <span id="val-gd-grad" class="font-bold text-emerald-600 dark:text-emerald-400">6.00</span></div>
-                                <div>&rarr; Step: <span id="val-gd-step" class="font-bold text-emerald-600 dark:text-emerald-400">Left</span></div>
+                                <div>Weight: <span id="val-gd-w" class="font-bold text-emerald-600 dark:text-emerald-400">4.00</span></div>
+                                <div>Gradient: <span id="val-gd-grad" class="font-bold text-emerald-600 dark:text-emerald-400">8.00</span></div>
                             </div>
                         </div>
                     </figure>
@@ -1148,13 +1260,12 @@
                     <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
                 </section>
 
-                <!-- Chapter 15 -->
                 <section id="chapter-15" class="scroll-mt-24">
                     <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 15</h2>
                     <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Mathematics as Information Compression</h3>
                     <div class="ch-meta">
                         <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        Est. read: 5 mins
+                        Est. read: 6 mins
                     </div>
 
                     <p>We have traveled a long path. The names changed. The symbols changed. But the underlying structure remained astonishingly stable. Compression does not simply mean discarding data; it means replacing raw information with organized structure. Mathematics discovers patterns.</p>
@@ -1162,7 +1273,18 @@
                     <h4>Shannon's Revolution: Measuring Surprise</h4>
                     <p>The recurring themes of compression revolve around a single, modern concept: Information. But what exactly is information? If someone tells you that 2 + 2 = 4, you learn almost nothing. Information is fundamentally tied to surprise and unpredictability.</p>
                     
-                    <p>Claude Shannon revolutionized science by proving that information can be mathematically measured. If an event occurs with probability \( p \), its information content is given by \( -\log_2(p) \). The average amount of information required to describe a system is called Shannon Entropy (\( H \)).</p>
+                    <p>Claude Shannon revolutionized science by proving that information can be mathematically measured. If an event occurs with probability \( p \), its "surprise" or information content is given by \( -\log_2(p) \). Rare events contain more information; common events contain less.</p>
+
+                    <div class="calculation-box">
+                        <h4>Calculating Shannon Entropy</h4>
+                        <div class="step"><strong>Given:</strong> A fair coin toss where \( P(Heads) = 0.5 \) and \( P(Tails) = 0.5 \).</div>
+                        <div class="step"><strong>Governing Principle:</strong> Shannon Entropy (the average amount of information required to describe a system).</div>
+                        <div class="step"><strong>Formula:</strong> \[ H = - \sum p_i \log_2(p_i) \]</div>
+                        <div class="step"><strong>Substitutions:</strong> \[ H = - [ 0.5 \log_2(0.5) + 0.5 \log_2(0.5) ] \]</div>
+                        <div class="step"><strong>Intermediate step:</strong> Since \( \log_2(0.5) = -1 \), we have: \[ H = - [ 0.5(-1) + 0.5(-1) ] = - [ -1 ] \]</div>
+                        <div class="step"><strong>Final result:</strong> \[ H = 1 \text{ Bit} \]</div>
+                        <div class="step"><strong>Meaning:</strong> A perfectly fair coin contains maximum uncertainty, requiring exactly 1 Bit of data to compress/represent the outcome. If the coin were heavily biased, the Entropy would drop toward 0 because the system possesses predictable structure.</div>
+                    </div>
 
                     <!-- SIMULATION 8: Shannon Entropy -->
                     <figure class="my-10 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 select-none font-sans overflow-hidden relative">
@@ -1208,7 +1330,6 @@
                     <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
                 </section>
 
-                <!-- Chapter 16 -->
                 <section id="chapter-16" class="scroll-mt-24">
                     <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 16</h2>
                     <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">The Grand Synthesis</h3>
@@ -1289,7 +1410,7 @@
                     <ul class="space-y-3">
                         <li><strong>Moments:</strong> \( \int x^n f(x)\,dx \)</li>
                         <li><strong>Fourier coefficients:</strong> \( \int f(x)\sin(nx)\,dx \)</li>
-                        <li><strong>Quantum expectations:</strong> \( \int x|\psi|^2dx \)</li>
+                        <li><strong>Quantum expectations:</strong> \( \int \psi^*(x) \, \hat{x} \, \psi(x) \, dx \)</li>
                         <li><strong>Machine-learning features:</strong> \( \sum w_i x_i \)</li>
                     </ul>
                     <p>In every case: An object is interrogated by a probe. The response becomes a number. The numbers become knowledge. And from those numbers, the entire architecture of science is built. Mathematics progresses by discovering better probes for extracting structure from complexity.</p>
@@ -1361,7 +1482,6 @@
                 document.documentElement.classList.add('dark');
                 localStorage.setItem('color-theme', 'dark');
             }
-            redrawAllSimulations();
         });
 
         // Scroll Spy for TOC
@@ -1424,6 +1544,7 @@
                 octonary: dark ? '#a78bfa' : '#8b5cf6', // Violet
                 nonary: dark ? '#fb923c' : '#ea580c', // Orange
                 denary: dark ? '#38bdf8' : '#0ea5e9', // Sky
+                eleven: dark ? '#f472b6' : '#db2777', // Pink
                 background: dark ? '#0f172a' : '#f8fafc' // Slate 900 / 50
             };
         }
@@ -1456,18 +1577,29 @@
             const w = canvas.width, h = canvas.height;
             const styles = getStyles();
 
-            const m1 = parseFloat(document.getElementById('slide-m1').value);
-            const x1 = parseFloat(document.getElementById('slide-x1').value);
-            const m2 = parseFloat(document.getElementById('slide-m2').value);
-            const x2 = parseFloat(document.getElementById('slide-x2').value);
+            const m1Slider = document.getElementById('slide-m1');
+            const x1Slider = document.getElementById('slide-x1');
+            const m2Slider = document.getElementById('slide-m2');
+            const x2Slider = document.getElementById('slide-x2');
 
-            document.getElementById('val-m1').textContent = m1 + ' kg';
-            document.getElementById('val-x1').textContent = x1.toFixed(1) + ' m';
-            document.getElementById('val-m2').textContent = m2 + ' kg';
-            document.getElementById('val-x2').textContent = x2.toFixed(1) + ' m';
+            const m1 = m1Slider ? parseFloat(m1Slider.value) : 10;
+            const x1 = x1Slider ? parseFloat(x1Slider.value) : 2;
+            const m2 = m2Slider ? parseFloat(m2Slider.value) : 5;
+            const x2 = x2Slider ? parseFloat(x2Slider.value) : 8;
+
+            const valM1 = document.getElementById('val-m1');
+            const valX1 = document.getElementById('val-x1');
+            const valM2 = document.getElementById('val-m2');
+            const valX2 = document.getElementById('val-x2');
+
+            if(valM1) valM1.textContent = m1 + ' kg';
+            if(valX1) valX1.textContent = x1.toFixed(1) + ' m';
+            if(valM2) valM2.textContent = m2 + ' kg';
+            if(valX2) valX2.textContent = x2.toFixed(1) + ' m';
 
             const cm = ((m1 * x1) + (m2 * x2)) / (m1 + m2);
-            document.getElementById('val-cm').textContent = cm.toFixed(2) + ' m';
+            const valCM = document.getElementById('val-cm');
+            if(valCM) valCM.textContent = cm.toFixed(2) + ' m';
 
             ctx.clearRect(0, 0, w, h);
             
@@ -1531,7 +1663,8 @@
             const w = canvas.width, h = canvas.height;
             const styles = getStyles();
 
-            const dist = parseFloat(document.getElementById('slide-inertia-dist').value); // 0 to 1
+            const distSlider = document.getElementById('slide-inertia-dist');
+            const dist = distSlider ? parseFloat(distSlider.value) : 0; 
             const totalArea = 10000;
             const maxHeight = 160;
             const currentHeight = 100 + (maxHeight - 100) * dist;
@@ -1552,10 +1685,10 @@
             const I_base = (100 * Math.pow(100, 3)) / 12;
             const I_ratio = I_total / I_base;
 
-            document.getElementById('val-inertia-i').textContent = I_ratio.toFixed(2) + 'x';
+            const valI = document.getElementById('val-inertia-i');
+            if(valI) valI.textContent = I_ratio.toFixed(2) + 'x';
 
             ctx.clearRect(0, 0, w, h);
-
             const centerX = w / 2;
             const centerY = h / 2;
 
@@ -1601,7 +1734,7 @@
             ctx.fillText("y", centerX + 70, centerY - currentHeight/4);
         }
 
-        // SIMULATION 13 (NEW): The Spinning Flywheel / Skater
+        // SIMULATION 13: The Spinning Flywheel / Skater
         let flyAngle = 0;
         let lastFlyTime = 0;
         function drawFlywheel(timestamp) {
@@ -1611,17 +1744,18 @@
             const w = canvas.width, h = canvas.height;
             const styles = getStyles();
 
-            const r = parseFloat(document.getElementById('slide-fly-r').value); // 0.2 to 1.0
+            const rSlider = document.getElementById('slide-fly-r');
+            const r = rSlider ? parseFloat(rSlider.value) : 1.0; 
             
-            // Mass is constant. I is proportional to r^2.
             const I = r * r; 
-            // Angular momentum L = I * w is constant. Let L = 1.
-            // w = L / I
             const omega = 1.0 / I;
 
-            document.getElementById('val-fly-r').textContent = r.toFixed(2) + ' m';
-            document.getElementById('val-fly-i').textContent = I.toFixed(2);
-            document.getElementById('val-fly-w').textContent = omega.toFixed(2) + ' rad/s';
+            const valR = document.getElementById('val-fly-r');
+            if(valR) valR.textContent = r.toFixed(2) + ' m';
+            const valI = document.getElementById('val-fly-i');
+            if(valI) valI.textContent = I.toFixed(2);
+            const valW = document.getElementById('val-fly-w');
+            if(valW) valW.textContent = omega.toFixed(2) + ' rad/s';
 
             if(lastFlyTime === 0) lastFlyTime = timestamp;
             const dt = (timestamp - lastFlyTime) / 1000;
@@ -1642,7 +1776,6 @@
             ctx.translate(cx, cy);
             ctx.rotate(flyAngle);
 
-            // Draw arms
             ctx.beginPath();
             ctx.strokeStyle = styles.text;
             ctx.lineWidth = 4;
@@ -1650,13 +1783,11 @@
             ctx.lineTo(pixelR, 0);
             ctx.stroke();
 
-            // Draw center mass
             ctx.beginPath();
             ctx.fillStyle = styles.text;
             ctx.arc(0, 0, 15, 0, Math.PI*2);
             ctx.fill();
 
-            // Draw outer masses
             ctx.beginPath();
             ctx.fillStyle = styles.denary; // Sky blue
             ctx.arc(-pixelR, 0, 20, 0, Math.PI*2);
@@ -1666,12 +1797,13 @@
             ctx.fill();
 
             ctx.restore();
-
-            // Keep animating
-            requestAnimationFrame(drawFlywheel);
         }
 
-        // SIMULATION 14 (NEW): The Rolling Race
+        // SIMULATION 14: The Rolling Race
+        // Rolling Race State Variables
+        let raceAnimating = false;
+        let raceTime = 0;
+
         function drawRollingRace() {
             const canvas = document.getElementById('sim-race');
             if(!canvas) return;
@@ -1679,11 +1811,11 @@
             const w = canvas.width, h = canvas.height;
             const styles = getStyles();
 
-            const t = parseFloat(document.getElementById('slide-race-t').value); // 0 to 1
+            const tSlider = document.getElementById('slide-race-t');
+            const t = tSlider ? parseFloat(tSlider.value) : 0;
             
             ctx.clearRect(0, 0, w, h);
 
-            // Draw Ramp
             const rampStartX = 50;
             const rampStartY = 50;
             const rampEndX = w - 50;
@@ -1698,39 +1830,28 @@
             ctx.lineTo(rampEndX, rampEndY);
             ctx.stroke();
 
-            // Physics logic
-            // a = (g * sin(theta)) / (1 + c)
-            // distance s = 0.5 * a * t^2
-            // To make it fit perfectly on slider [0,1], let's scale max t to reach the end for the slowest object
-            // Slowest is hollow (c=1). a_hollow = 0.5 * g * sin(theta).
-            // Let a_hollow = 2 * rampLen / (1^2) = 2 * rampLen.
-            const a_hollow = 2 * rampLen; // So at t=1, s = rampLen.
-            // Since a = K / (1+c), and K / (1+1) = a_hollow => K = 2 * a_hollow
+            const a_hollow = 2 * rampLen; 
             const K = 2 * a_hollow;
             
-            const a_solid = K / (1 + 0.5); // c = 0.5 for solid cylinder
-            const a_ring = K / (1 + 1.0);  // c = 1.0 for hollow ring
+            const a_solid = K / (1 + 0.5); 
+            const a_ring = K / (1 + 1.0);  
 
             let s_solid = 0.5 * a_solid * t * t;
             let s_ring = 0.5 * a_ring * t * t;
 
-            // Cap at end of ramp
             if(s_solid > rampLen) s_solid = rampLen;
             if(s_ring > rampLen) s_ring = rampLen;
 
             const radius = 25;
 
-            // Function to draw rolling object
             function drawRoller(s, color, isHollow, offset) {
-                // position along ramp
                 const cx = rampStartX + s * Math.cos(theta);
                 const cy = rampStartY + s * Math.sin(theta);
                 
-                // Perpendicular offset so it sits ON the ramp
                 const px = cx - radius * Math.sin(theta) + offset * Math.cos(theta + Math.PI/2);
                 const py = cy + radius * Math.cos(theta) + offset * Math.sin(theta + Math.PI/2);
 
-                const rotation = s / radius; // angle = arc_length / radius
+                const rotation = s / radius; 
 
                 ctx.save();
                 ctx.translate(px, py);
@@ -1748,7 +1869,6 @@
                     ctx.fill();
                 }
 
-                // Marker to show rotation
                 ctx.beginPath();
                 ctx.strokeStyle = isDarkMode() ? '#fff' : '#000';
                 ctx.lineWidth = 2;
@@ -1757,22 +1877,92 @@
                 ctx.stroke();
 
                 ctx.restore();
-                
-                return {px, py};
             }
 
-            // Draw them (Solid slightly "behind" Ring in depth so we can see both)
-            const posSolid = drawRoller(s_solid, styles.primary, false, -5); // Solid Cylinder
-            const posRing = drawRoller(s_ring, styles.tertiary, true, 5);  // Hollow Ring
+            drawRoller(s_solid, styles.primary, false, -5); 
+            drawRoller(s_ring, styles.tertiary, true, 5);  
 
-            // Labels
             ctx.fillStyle = styles.primary;
             ctx.font = "bold 14px sans-serif";
             ctx.fillText("Solid (I=0.5MR²)", 50, 30);
             ctx.fillStyle = styles.tertiary;
             ctx.fillText("Hollow (I=1.0MR²)", w - 180, 30);
+        }
 
-            // Connecting lines to labels if you wanted...
+        // SIMULATION 15: The Power Probe
+        function drawPowerProbe() {
+            const canvas = document.getElementById('sim-powers');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            const styles = getStyles();
+
+            const nSlider = document.getElementById('slide-power-n');
+            const n = nSlider ? parseInt(nSlider.value) : 2;
+            const nNames = ["0 (Amount)", "1 (Location)", "2 (Spread)", "3 (Skew)", "4 (Extremes)", "5", "6"];
+            
+            const valN = document.getElementById('val-power-n');
+            if(valN) valN.textContent = "n = " + nNames[n];
+
+            ctx.clearRect(0, 0, w, h);
+
+            const minX = -4, maxX = 4;
+            const maxY = 2.0;
+            const originY = h - 30;
+            const originX = w / 2;
+            
+            const mapX = x => originX + (x / maxX) * (w / 2);
+            const mapY = y => originY - (y / maxY) * (originY - 20);
+
+            drawGridAndAxes(ctx, w, h, originX, originY, styles, w/16, (originY - 20)/4);
+
+            const dataF = (x) => 0.6 * Math.exp(-(x-1)*(x-1)/1.0) + 0.3 * Math.exp(-(x+2)*(x+2)/0.5);
+            const probeScale = 1.5 / Math.pow(4, n);
+            const probeF = (x) => probeScale * Math.pow(Math.abs(x), n);
+
+            let momentSum = 0;
+            const dx = (maxX - minX) / w;
+
+            let fillPath = new Path2D();
+            fillPath.moveTo(0, originY);
+            for(let px=0; px<=w; px+=2) {
+                let x = minX + (px/w)*(maxX - minX);
+                let product = dataF(x) * probeF(x);
+                momentSum += product * dx;
+                
+                let py = mapY(product);
+                fillPath.lineTo(px, py);
+            }
+            fillPath.lineTo(w, originY);
+            fillPath.closePath();
+            
+            ctx.fillStyle = isDarkMode() ? 'rgba(244, 114, 182, 0.3)' : 'rgba(219, 39, 119, 0.2)'; 
+            ctx.fill(fillPath);
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.primary; 
+            ctx.lineWidth = 3;
+            for(let px=0; px<=w; px+=2) {
+                let x = minX + (px/w)*(maxX - minX);
+                if(px===0) ctx.moveTo(px, mapY(dataF(x)));
+                else ctx.lineTo(px, mapY(dataF(x)));
+            }
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.eleven; 
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 5]);
+            for(let px=0; px<=w; px+=2) {
+                let x = minX + (px/w)*(maxX - minX);
+                if(px===0) ctx.moveTo(px, mapY(probeF(x)));
+                else ctx.lineTo(px, mapY(probeF(x)));
+            }
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            const valRes = document.getElementById('val-power-result');
+            if(valRes) valRes.textContent = momentSum.toFixed(2);
         }
 
         // SIMULATION 2: Taylor Series
@@ -1789,8 +1979,11 @@
             const w = canvas.width, h = canvas.height;
             const styles = getStyles();
 
-            const n = parseInt(document.getElementById('slide-taylor-n').value);
-            document.getElementById('val-taylor-n').textContent = 'Order: ' + n;
+            const nSlider = document.getElementById('slide-taylor-n');
+            const n = nSlider ? parseInt(nSlider.value) : 1;
+            
+            const valN = document.getElementById('val-taylor-n');
+            if(valN) valN.textContent = 'Order: ' + n;
 
             let eqStr = "f(x) &approx; ";
             for(let i=0; i<= Math.floor((n-1)/2); i++) {
@@ -1800,7 +1993,8 @@
                 let denominator = p === 1 ? "" : " / " + p + "!";
                 eqStr += sign + "x" + (p > 1 ? "<sup>" + p + "</sup>" : "") + denominator;
             }
-            document.getElementById('val-taylor-eq').innerHTML = eqStr;
+            const valEq = document.getElementById('val-taylor-eq');
+            if(valEq) valEq.innerHTML = eqStr;
 
             ctx.clearRect(0, 0, w, h);
 
@@ -1851,12 +2045,16 @@
             const w = canvas.width, h = canvas.height;
             const styles = getStyles();
 
-            const mu = parseFloat(document.getElementById('slide-gauss-mu').value);
-            const vr = parseFloat(document.getElementById('slide-gauss-var').value);
+            const muSlider = document.getElementById('slide-gauss-mu');
+            const varSlider = document.getElementById('slide-gauss-var');
+            const mu = muSlider ? parseFloat(muSlider.value) : 0;
+            const vr = varSlider ? parseFloat(varSlider.value) : 1;
             const sigma = Math.sqrt(vr);
 
-            document.getElementById('val-gauss-mu').textContent = mu.toFixed(1);
-            document.getElementById('val-gauss-var').textContent = vr.toFixed(1);
+            const valMu = document.getElementById('val-gauss-mu');
+            const valVar = document.getElementById('val-gauss-var');
+            if(valMu) valMu.textContent = mu.toFixed(1);
+            if(valVar) valVar.textContent = vr.toFixed(1);
 
             ctx.clearRect(0, 0, w, h);
 
@@ -1919,110 +2117,175 @@
             ctx.fillText("+1σ", mapX(mu + sigma), originY + 20);
         }
 
-        // SIMULATION 4: Fourier
-        function drawFourier() {
-            const canvas = document.getElementById('sim-fourier');
+        // SIMULATION 9: Functional Probes
+        function drawFunctionalProbes() {
+            const canvas = document.getElementById('sim-probes');
             if(!canvas) return;
             const ctx = canvas.getContext('2d');
             const w = canvas.width, h = canvas.height;
             const styles = getStyles();
 
-            const N = parseInt(document.getElementById('slide-fourier-n').value);
-            document.getElementById('val-fourier-n').textContent = (N===1) ? '1 Harmonic' : Math.ceil(N/2) + ' Harmonics';
+            const pTypeSlider = document.getElementById('slide-probe-type');
+            const probeType = pTypeSlider ? parseInt(pTypeSlider.value) : 0;
+            const names = ["Constant (x⁰)", "Linear (x¹)", "Sine (sin x)", "Cosine (cos x)"];
+            
+            const valName = document.getElementById('val-probe-name');
+            if(valName) valName.textContent = names[probeType];
 
             ctx.clearRect(0, 0, w, h);
 
-            const minX = 0, maxX = 4 * Math.PI;
-            const minY = -1.5, maxY = 1.5;
+            const minX = -Math.PI, maxX = Math.PI;
+            const minY = -2.5, maxY = 2.5;
             const mapX = x => ((x - minX) / (maxX - minX)) * w;
             const mapY = y => h - ((y - minY) / (maxY - minY)) * h;
+            const originY = mapY(0);
 
-            drawGridAndAxes(ctx, w, h, mapX(0), mapY(0), styles, w/8, h/6);
+            drawGridAndAxes(ctx, w, h, mapX(0), originY, styles, w/8, h/5);
+
+            const f = (x) => Math.sin(2 * x) + 0.5 * Math.cos(x);
+            
+            let g;
+            if(probeType === 0) g = (x) => 1;
+            else if(probeType === 1) g = (x) => x / Math.PI; 
+            else if(probeType === 2) g = (x) => Math.sin(2 * x); 
+            else if(probeType === 3) g = (x) => Math.cos(2 * x); 
+
+            let innerProduct = 0;
+            const dx = (maxX - minX) / w;
+
+            let fillPath = new Path2D();
+            fillPath.moveTo(0, originY);
+
+            for(let px=0; px<=w; px++) {
+                let x = minX + (px/w)*(maxX - minX);
+                let yF = f(x);
+                let yG = g(x);
+                let product = yF * yG;
+                
+                innerProduct += product * dx;
+                
+                let pyProd = mapY(product);
+                fillPath.lineTo(px, pyProd);
+            }
+            fillPath.lineTo(w, originY);
+            fillPath.closePath();
+            
+            ctx.fillStyle = isDarkMode() ? 'rgba(34, 211, 238, 0.2)' : 'rgba(6, 182, 212, 0.15)'; // Cyan
+            ctx.fill(fillPath);
 
             ctx.beginPath();
-            ctx.strokeStyle = styles.text;
-            ctx.lineWidth = 1;
+            ctx.strokeStyle = styles.text; 
+            ctx.lineWidth = 3;
+            for(let px=0; px<=w; px+=2) {
+                let x = minX + (px/w)*(maxX - minX);
+                if(px===0) ctx.moveTo(px, mapY(f(x)));
+                else ctx.lineTo(px, mapY(f(x)));
+            }
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.septenary; // Teal
+            ctx.lineWidth = 2;
             ctx.setLineDash([5, 5]);
-            for(let x=minX; x<=maxX; x+=0.05) {
-                let idealY = Math.sin(x) >= 0 ? 1 : -1;
-                idealY = idealY * (4/Math.PI) * 0.785; 
-                if(x===minX) ctx.moveTo(mapX(x), mapY(idealY));
-                else ctx.lineTo(mapX(x), mapY(idealY));
+            for(let px=0; px<=w; px+=4) {
+                let x = minX + (px/w)*(maxX - minX);
+                if(px===0) ctx.moveTo(px, mapY(g(x)));
+                else ctx.lineTo(px, mapY(g(x)));
             }
             ctx.stroke();
             ctx.setLineDash([]);
 
-            ctx.beginPath();
-            ctx.strokeStyle = styles.senary; 
-            ctx.lineWidth = 3;
-            for(let px=0; px<=w; px+=2) {
-                let x = minX + (px/w)*(maxX - minX);
-                let y = 0;
-                for(let n=1; n<=N; n+=2) {
-                    y += Math.sin(n * x) / n;
-                }
-                y *= (4 / Math.PI);
-                
-                if(px===0) ctx.moveTo(px, mapY(y));
-                else ctx.lineTo(px, mapY(y));
-            }
-            ctx.stroke();
+            const valRes = document.getElementById('val-probe-result');
+            if(valRes) valRes.textContent = innerProduct.toFixed(2);
         }
 
-        // SIMULATION 5: Quantum
-        function drawQuantum() {
-            const canvas = document.getElementById('sim-quantum');
+        // SIMULATION 10: Orthogonal Polynomials
+        function legendre(n, x) {
+            if(n===0) return 1;
+            if(n===1) return x;
+            if(n===2) return 0.5 * (3*x*x - 1);
+            if(n===3) return 0.5 * (5*x*x*x - 3*x);
+            if(n===4) return 0.125 * (35*x*x*x*x - 30*x*x + 3);
+            return 0;
+        }
+
+        function drawOrthogonalPolys() {
+            const canvas = document.getElementById('sim-orthogonal');
             if(!canvas) return;
             const ctx = canvas.getContext('2d');
             const w = canvas.width, h = canvas.height;
             const styles = getStyles();
 
-            const n = parseInt(document.getElementById('slide-quantum-n').value);
-            document.getElementById('val-quantum-n').textContent = 'State: n = ' + n;
-            document.getElementById('val-quantum-spread').innerHTML = '&langle;x&sup2;&rangle; &prop; ' + (n + 0.5).toFixed(1);
+            const nSlider = document.getElementById('slide-ortho-n');
+            const mSlider = document.getElementById('slide-ortho-m');
+            const tLegendre = document.getElementById('toggle-legendre');
+
+            const n = nSlider ? parseInt(nSlider.value) : 2;
+            const m = mSlider ? parseInt(mSlider.value) : 4;
+            const useLegendre = tLegendre ? tLegendre.checked : false;
+
+            const valN = document.getElementById('val-ortho-n');
+            const valM = document.getElementById('val-ortho-m');
+            if(valN) valN.textContent = n;
+            if(valM) valM.textContent = m;
 
             ctx.clearRect(0, 0, w, h);
 
-            const minX = -4, maxX = 4;
-            const originY = h - 20;
+            const minX = -1, maxX = 1;
+            const minY = -1.2, maxY = 1.2;
             const mapX = x => ((x - minX) / (maxX - minX)) * w;
-            
-            const scales = [0.8, 0.5, 0.125, 0.02, 0.003, 0.0003];
-            const mapY = y => originY - (y / 1.0) * (originY - 20);
+            const mapY = y => h - ((y - minY) / (maxY - minY)) * h;
+            const originY = mapY(0);
 
-            drawGridAndAxes(ctx, w, h, mapX(0), originY, styles, w/8, (originY - 20)/4);
+            drawGridAndAxes(ctx, w, h, mapX(0), originY, styles, w/4, h/4);
 
-            ctx.beginPath();
-            ctx.strokeStyle = styles.secondary; 
-            ctx.lineWidth = 3;
-            
+            const pA = (x) => useLegendre ? legendre(n, x) : Math.pow(x, n);
+            const pB = (x) => useLegendre ? legendre(m, x) : Math.pow(x, m);
+
+            let innerProduct = 0;
+            const dx = (maxX - minX) / w;
+
             let fillPath = new Path2D();
             fillPath.moveTo(0, originY);
-            
-            for(let px=0; px<=w; px+=2) {
+
+            for(let px=0; px<=w; px++) {
                 let x = minX + (px/w)*(maxX - minX);
-                
-                let H = 1;
-                if (n === 1) H = 2 * x;
-                else if (n === 2) H = 4 * x * x - 2;
-                else if (n === 3) H = 8 * x * x * x - 12 * x;
-                else if (n === 4) H = 16 * Math.pow(x,4) - 48 * x * x + 12;
-                else if (n === 5) H = 32 * Math.pow(x,5) - 160 * Math.pow(x,3) + 120 * x;
-                
-                let psi = H * Math.exp(-0.5 * x * x);
-                let prob = (psi * psi) * scales[n];
-                
-                let py = mapY(prob);
-                if(px===0) ctx.moveTo(px, py);
-                else ctx.lineTo(px, py);
-                fillPath.lineTo(px, py);
+                let product = pA(x) * pB(x);
+                innerProduct += product * dx;
+                fillPath.lineTo(px, mapY(product));
             }
-            ctx.stroke();
-            
             fillPath.lineTo(w, originY);
             fillPath.closePath();
-            ctx.fillStyle = isDarkMode() ? 'rgba(129, 140, 248, 0.2)' : 'rgba(79, 70, 229, 0.15)';
+
+            ctx.fillStyle = isDarkMode() ? 'rgba(167, 139, 250, 0.2)' : 'rgba(139, 92, 246, 0.15)'; 
             ctx.fill(fillPath);
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.octonary; 
+            ctx.lineWidth = 3;
+            for(let px=0; px<=w; px+=2) {
+                let x = minX + (px/w)*(maxX - minX);
+                if(px===0) ctx.moveTo(px, mapY(pA(x)));
+                else ctx.lineTo(px, mapY(pA(x)));
+            }
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.strokeStyle = '#ec4899'; 
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 5]);
+            for(let px=0; px<=w; px+=3) {
+                let x = minX + (px/w)*(maxX - minX);
+                if(px===0) ctx.moveTo(px, mapY(pB(x)));
+                else ctx.lineTo(px, mapY(pB(x)));
+            }
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            if(useLegendre && n !== m && Math.abs(innerProduct) < 0.05) innerProduct = 0; 
+
+            const valRes = document.getElementById('val-ortho-result');
+            if(valRes) valRes.textContent = innerProduct.toFixed(2);
         }
 
         // SIMULATION 6: PCA
@@ -2045,9 +2308,12 @@
             const w = canvas.width, h = canvas.height;
             const styles = getStyles();
 
-            const thetaDeg = parseFloat(document.getElementById('slide-pca-theta').value);
+            const tSlider = document.getElementById('slide-pca-theta');
+            const thetaDeg = tSlider ? parseFloat(tSlider.value) : 45;
             const theta = thetaDeg * Math.PI / 180;
-            document.getElementById('val-pca-theta').innerHTML = thetaDeg + '&deg;';
+            
+            const valTheta = document.getElementById('val-pca-theta');
+            if(valTheta) valTheta.innerHTML = thetaDeg + '&deg;';
 
             ctx.clearRect(0, 0, w, h);
             const originX = w/2, originY = h/2;
@@ -2097,80 +2363,8 @@
             });
             
             variance = variance / pcaPoints.length;
-            document.getElementById('val-pca-var').textContent = variance.toFixed(2);
-        }
-
-        // SIMULATION 7: Gradient Descent
-        function drawGradientDescent() {
-            const canvas = document.getElementById('sim-gradient');
-            if(!canvas) return;
-            const ctx = canvas.getContext('2d');
-            const w = canvas.width, h = canvas.height;
-            const styles = getStyles();
-
-            const wt = parseFloat(document.getElementById('slide-gd-w').value);
-            document.getElementById('val-gd-w').textContent = wt.toFixed(2);
-            
-            const loss = wt * wt;
-            const gradient = 2 * wt;
-            document.getElementById('val-gd-grad').textContent = gradient.toFixed(2);
-            
-            const stepDir = gradient > 0 ? "Left" : (gradient < 0 ? "Right" : "Optimal!");
-            document.getElementById('val-gd-step').textContent = stepDir;
-            
-            ctx.clearRect(0, 0, w, h);
-            
-            const minX = -6, maxX = 6;
-            const maxY = 36;
-            const originX = w / 2;
-            const originY = h - 20;
-
-            const mapX = x => originX + (x / maxX) * (w / 2);
-            const mapY = y => originY - (y / maxY) * (originY - 20);
-
-            drawGridAndAxes(ctx, w, h, originX, originY, styles, w/12, (originY - 20)/4);
-
-            ctx.beginPath();
-            ctx.strokeStyle = styles.text;
-            ctx.lineWidth = 3;
-            for(let px=0; px<=w; px+=2) {
-                let x = minX + (px/w)*(maxX - minX);
-                let y = x * x;
-                let py = mapY(y);
-                if(px===0) ctx.moveTo(px, py);
-                else ctx.lineTo(px, py);
-            }
-            ctx.stroke();
-
-            const pxWt = mapX(wt);
-            const pyLoss = mapY(loss);
-
-            const tanLen = 1.5; 
-            const tanX1 = wt - tanLen;
-            const tanY1 = loss - gradient * tanLen;
-            const tanX2 = wt + tanLen;
-            const tanY2 = loss + gradient * tanLen;
-
-            ctx.beginPath();
-            ctx.strokeStyle = styles.quinary; 
-            ctx.lineWidth = 3;
-            ctx.moveTo(mapX(tanX1), mapY(tanY1));
-            ctx.lineTo(mapX(tanX2), mapY(tanY2));
-            ctx.stroke();
-
-            ctx.beginPath();
-            ctx.fillStyle = styles.primary;
-            ctx.arc(pxWt, pyLoss, 8, 0, Math.PI*2);
-            ctx.fill();
-            
-            ctx.beginPath();
-            ctx.strokeStyle = styles.text + '80';
-            ctx.setLineDash([4, 4]);
-            ctx.moveTo(pxWt, originY);
-            ctx.lineTo(pxWt, pyLoss);
-            ctx.lineTo(originX, pyLoss);
-            ctx.stroke();
-            ctx.setLineDash([]);
+            const valVar = document.getElementById('val-pca-var');
+            if(valVar) valVar.textContent = variance.toFixed(2);
         }
 
         // SIMULATION 8: Entropy
@@ -2181,14 +2375,18 @@
             const w = canvas.width, h = canvas.height;
             const styles = getStyles();
 
-            const p = parseFloat(document.getElementById('slide-ent-p').value);
-            document.getElementById('val-ent-p').textContent = p.toFixed(2);
+            const pSlider = document.getElementById('slide-ent-p');
+            const p = pSlider ? parseFloat(pSlider.value) : 0.5;
+            
+            const valP = document.getElementById('val-ent-p');
+            if(valP) valP.textContent = p.toFixed(2);
             
             let entropy = 0;
             if (p > 0 && p < 1) {
                 entropy = -p * Math.log2(p) - (1-p) * Math.log2(1-p);
             }
-            document.getElementById('val-ent-h').textContent = entropy.toFixed(2) + " Bits";
+            const valH = document.getElementById('val-ent-h');
+            if(valH) valH.textContent = entropy.toFixed(2) + " Bits";
 
             ctx.clearRect(0, 0, w, h);
 
@@ -2246,175 +2444,6 @@
             ctx.fill();
         }
 
-        // SIMULATION 9: Functional Probes
-        function drawFunctionalProbes() {
-            const canvas = document.getElementById('sim-probes');
-            if(!canvas) return;
-            const ctx = canvas.getContext('2d');
-            const w = canvas.width, h = canvas.height;
-            const styles = getStyles();
-
-            const probeType = parseInt(document.getElementById('slide-probe-type').value);
-            const names = ["Constant (x⁰)", "Linear (x¹)", "Sine (sin x)", "Cosine (cos x)"];
-            document.getElementById('val-probe-name').textContent = names[probeType];
-
-            ctx.clearRect(0, 0, w, h);
-
-            const minX = -Math.PI, maxX = Math.PI;
-            const minY = -2.5, maxY = 2.5;
-            const mapX = x => ((x - minX) / (maxX - minX)) * w;
-            const mapY = y => h - ((y - minY) / (maxY - minY)) * h;
-            const originY = mapY(0);
-
-            drawGridAndAxes(ctx, w, h, mapX(0), originY, styles, w/8, h/5);
-
-            // Hidden Signal: f(x) = sin(2x) + 0.5cos(x)
-            const f = (x) => Math.sin(2 * x) + 0.5 * Math.cos(x);
-            
-            // Probe Function: g(x)
-            let g;
-            if(probeType === 0) g = (x) => 1;
-            else if(probeType === 1) g = (x) => x / Math.PI; // scaled
-            else if(probeType === 2) g = (x) => Math.sin(2 * x); // aligns with hidden signal!
-            else if(probeType === 3) g = (x) => Math.cos(2 * x); // orthogonal to hidden signal
-
-            let innerProduct = 0;
-            const dx = (maxX - minX) / w;
-
-            let fillPath = new Path2D();
-            fillPath.moveTo(0, originY);
-
-            for(let px=0; px<=w; px++) {
-                let x = minX + (px/w)*(maxX - minX);
-                let yF = f(x);
-                let yG = g(x);
-                let product = yF * yG;
-                
-                innerProduct += product * dx;
-                
-                let pyProd = mapY(product);
-                fillPath.lineTo(px, pyProd);
-            }
-            fillPath.lineTo(w, originY);
-            fillPath.closePath();
-            
-            // Draw Shaded Product (Overlap Area)
-            ctx.fillStyle = isDarkMode() ? 'rgba(34, 211, 238, 0.2)' : 'rgba(6, 182, 212, 0.15)'; // Cyan
-            ctx.fill(fillPath);
-
-            // Draw Hidden Signal
-            ctx.beginPath();
-            ctx.strokeStyle = styles.text; 
-            ctx.lineWidth = 3;
-            for(let px=0; px<=w; px+=2) {
-                let x = minX + (px/w)*(maxX - minX);
-                if(px===0) ctx.moveTo(px, mapY(f(x)));
-                else ctx.lineTo(px, mapY(f(x)));
-            }
-            ctx.stroke();
-
-            // Draw Probe
-            ctx.beginPath();
-            ctx.strokeStyle = styles.septenary; // Teal
-            ctx.lineWidth = 2;
-            ctx.setLineDash([5, 5]);
-            for(let px=0; px<=w; px+=4) {
-                let x = minX + (px/w)*(maxX - minX);
-                if(px===0) ctx.moveTo(px, mapY(g(x)));
-                else ctx.lineTo(px, mapY(g(x)));
-            }
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            document.getElementById('val-probe-result').textContent = innerProduct.toFixed(2);
-        }
-
-        // SIMULATION 10: Orthogonal Polynomials
-        function legendre(n, x) {
-            if(n===0) return 1;
-            if(n===1) return x;
-            if(n===2) return 0.5 * (3*x*x - 1);
-            if(n===3) return 0.5 * (5*x*x*x - 3*x);
-            if(n===4) return 0.125 * (35*x*x*x*x - 30*x*x + 3);
-            return 0;
-        }
-
-        function drawOrthogonalPolys() {
-            const canvas = document.getElementById('sim-orthogonal');
-            if(!canvas) return;
-            const ctx = canvas.getContext('2d');
-            const w = canvas.width, h = canvas.height;
-            const styles = getStyles();
-
-            const n = parseInt(document.getElementById('slide-ortho-n').value);
-            const m = parseInt(document.getElementById('slide-ortho-m').value);
-            const useLegendre = document.getElementById('toggle-legendre').checked;
-
-            document.getElementById('val-ortho-n').textContent = n;
-            document.getElementById('val-ortho-m').textContent = m;
-
-            ctx.clearRect(0, 0, w, h);
-
-            const minX = -1, maxX = 1;
-            const minY = -1.2, maxY = 1.2;
-            const mapX = x => ((x - minX) / (maxX - minX)) * w;
-            const mapY = y => h - ((y - minY) / (maxY - minY)) * h;
-            const originY = mapY(0);
-
-            drawGridAndAxes(ctx, w, h, mapX(0), originY, styles, w/4, h/4);
-
-            const pA = (x) => useLegendre ? legendre(n, x) : Math.pow(x, n);
-            const pB = (x) => useLegendre ? legendre(m, x) : Math.pow(x, m);
-
-            let innerProduct = 0;
-            const dx = (maxX - minX) / w;
-
-            let fillPath = new Path2D();
-            fillPath.moveTo(0, originY);
-
-            for(let px=0; px<=w; px++) {
-                let x = minX + (px/w)*(maxX - minX);
-                let product = pA(x) * pB(x);
-                innerProduct += product * dx;
-                fillPath.lineTo(px, mapY(product));
-            }
-            fillPath.lineTo(w, originY);
-            fillPath.closePath();
-
-            // Fill product
-            ctx.fillStyle = isDarkMode() ? 'rgba(167, 139, 250, 0.2)' : 'rgba(139, 92, 246, 0.15)'; // Violet
-            ctx.fill(fillPath);
-
-            // Draw pA
-            ctx.beginPath();
-            ctx.strokeStyle = styles.octonary; // Violet
-            ctx.lineWidth = 3;
-            for(let px=0; px<=w; px+=2) {
-                let x = minX + (px/w)*(maxX - minX);
-                if(px===0) ctx.moveTo(px, mapY(pA(x)));
-                else ctx.lineTo(px, mapY(pA(x)));
-            }
-            ctx.stroke();
-
-            // Draw pB
-            ctx.beginPath();
-            ctx.strokeStyle = '#ec4899'; // Pink
-            ctx.lineWidth = 2;
-            ctx.setLineDash([5, 5]);
-            for(let px=0; px<=w; px+=3) {
-                let x = minX + (px/w)*(maxX - minX);
-                if(px===0) ctx.moveTo(px, mapY(pB(x)));
-                else ctx.lineTo(px, mapY(pB(x)));
-            }
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Fix JS floating point imprecision for perfect orthogonality
-            if(useLegendre && n !== m && Math.abs(innerProduct) < 0.05) innerProduct = 0; 
-
-            document.getElementById('val-ortho-result').textContent = innerProduct.toFixed(2);
-        }
-
         // SIMULATION 11: Cognitive Compression
         let cognitiveParticles = [];
         function initCognitiveParticles() {
@@ -2444,12 +2473,15 @@
             const w = canvas.width, h = canvas.height;
             const styles = getStyles();
 
-            const stage = parseFloat(document.getElementById('slide-cognitive-stage').value);
+            const stSlider = document.getElementById('slide-cognitive-stage');
+            const stage = stSlider ? parseFloat(stSlider.value) : 0;
             
             let phaseText = "Chaos";
             if(stage > 0.3 && stage < 0.7) phaseText = "Statistical Structure";
             if(stage >= 0.7) phaseText = "Unified Concept";
-            document.getElementById('val-cognitive-phase').textContent = phaseText;
+            
+            const valPhase = document.getElementById('val-cognitive-phase');
+            if(valPhase) valPhase.textContent = phaseText;
 
             ctx.clearRect(0, 0, w, h);
 
@@ -2493,34 +2525,399 @@
         }
 
 
-        // Init & Event Routing
+        // ==========================================
+        // DYNAMIC / ANIMATED SIMULATIONS 
+        // ==========================================
+        
+        let globalTime = 0;
+        let lastGlobalTime = 0;
+
+        // SIMULATION 16: Phase Space
+        function drawPhaseSpace(timestamp, dt) {
+            const canvas = document.getElementById('sim-phasespace');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            const styles = getStyles();
+
+            const ampSlider = document.getElementById('slide-phase-amp');
+            const amp = ampSlider ? parseFloat(ampSlider.value) : 0.8;
+
+            ctx.clearRect(0, 0, w, h);
+
+            const cxLeft = w * 0.25;
+            const cyLeft = h * 0.2;
+            const cxRight = w * 0.75;
+            const cyRight = h * 0.5;
+
+            const omega = 2.0; 
+            const theta = amp * Math.cos(omega * globalTime);
+            const v = -amp * omega * Math.sin(omega * globalTime);
+
+            const pendLen = 100;
+            const bobX = cxLeft + pendLen * Math.sin(theta);
+            const bobY = cyLeft + pendLen * Math.cos(theta);
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.grid;
+            ctx.lineWidth = 4;
+            ctx.moveTo(cxLeft - 50, cyLeft);
+            ctx.lineTo(cxLeft + 50, cyLeft);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.text;
+            ctx.lineWidth = 2;
+            ctx.moveTo(cxLeft, cyLeft);
+            ctx.lineTo(bobX, bobY);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.fillStyle = styles.primary;
+            ctx.arc(bobX, bobY, 15, 0, Math.PI*2);
+            ctx.fill();
+
+            drawGridAndAxes(ctx, w, h, cxRight, cyRight, styles, w/16, h/8);
+            
+            ctx.fillStyle = styles.text;
+            ctx.font = "italic 12px sans-serif";
+            ctx.fillText("Position (x)", cxRight + 120, cyRight - 10);
+            ctx.fillText("Velocity (v)", cxRight + 10, cyRight - 100);
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.grid;
+            ctx.lineWidth = 2;
+            ctx.ellipse(cxRight, cyRight, amp * 80, amp * omega * 40, 0, 0, Math.PI*2);
+            ctx.stroke();
+
+            const px = cxRight + theta * 80;
+            const py = cyRight - v * 40; 
+
+            ctx.beginPath();
+            ctx.fillStyle = styles.secondary;
+            ctx.arc(px, py, 6, 0, Math.PI*2);
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.primary + '40'; 
+            ctx.setLineDash([4,4]);
+            ctx.moveTo(bobX, bobY);
+            ctx.lineTo(px, py);
+            ctx.stroke();
+            ctx.setLineDash([]);
+        }
+
+        // SIMULATION 17: Quantum Coherent State
+        function drawCoherentState(timestamp, dt) {
+            const canvas = document.getElementById('sim-coherent');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            const styles = getStyles();
+
+            const sigSlider = document.getElementById('slide-coh-sig');
+            const sigma = sigSlider ? parseFloat(sigSlider.value) : 0.5;
+
+            ctx.clearRect(0, 0, w, h);
+
+            const minX = -4, maxX = 4;
+            const originY = h - 30;
+            const mapX = x => ((x - minX) / (maxX - minX)) * w;
+            const mapY = y => originY - (y / 1.0) * (originY - 20);
+
+            drawGridAndAxes(ctx, w, h, mapX(0), originY, styles, w/8, (originY - 20)/4);
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.grid;
+            ctx.lineWidth = 2;
+            for(let px=0; px<=w; px+=5) {
+                let x = minX + (px/w)*(maxX - minX);
+                let v = 0.05 * x * x; 
+                if(px===0) ctx.moveTo(px, mapY(v));
+                else ctx.lineTo(px, mapY(v));
+            }
+            ctx.stroke();
+
+            const x0 = 2.0 * Math.cos(2.0 * globalTime);
+
+            let fillPath = new Path2D();
+            fillPath.moveTo(0, originY);
+            
+            for(let px=0; px<=w; px+=2) {
+                let x = minX + (px/w)*(maxX - minX);
+                let prob = (1 / (sigma * Math.sqrt(Math.PI))) * Math.exp(-Math.pow((x - x0)/sigma, 2));
+                let py = mapY(prob * 0.5); 
+                fillPath.lineTo(px, py);
+            }
+            fillPath.lineTo(w, originY);
+            fillPath.closePath();
+
+            ctx.fillStyle = isDarkMode() ? 'rgba(168, 85, 247, 0.3)' : 'rgba(147, 51, 234, 0.2)'; 
+            ctx.fill(fillPath);
+
+            const expX = mapX(x0);
+            ctx.beginPath();
+            ctx.fillStyle = styles.tertiary; 
+            ctx.arc(expX, originY, 6, 0, Math.PI*2);
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.tertiary;
+            ctx.setLineDash([4,4]);
+            ctx.moveTo(expX, originY);
+            ctx.lineTo(expX, mapY( (1 / (sigma * Math.sqrt(Math.PI))) * 0.5 ));
+            ctx.stroke();
+            ctx.setLineDash([]);
+        }
+
+        // SIMULATION 18: Dynamic Fourier Epicycles
+        function drawFourierEpicycles(timestamp, dt) {
+            const canvas = document.getElementById('sim-fourier');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            const styles = getStyles();
+
+            const nSlider = document.getElementById('slide-fourier-n');
+            const N = nSlider ? parseInt(nSlider.value) : 1; 
+
+            ctx.clearRect(0, 0, w, h);
+
+            const cx = w * 0.2;
+            const cy = h * 0.5;
+            const timeScale = 1.5;
+
+            let px = cx;
+            let py = cy;
+
+            for (let i = 0; i < N; i++) {
+                let n = i * 2 + 1; 
+                let radius = 60 * (4 / (n * Math.PI));
+                let angle = n * globalTime * timeScale;
+
+                let prevX = px;
+                let prevY = py;
+
+                px += radius * Math.cos(angle);
+                py += radius * Math.sin(angle);
+
+                ctx.beginPath();
+                ctx.strokeStyle = styles.grid;
+                ctx.lineWidth = 1;
+                ctx.arc(prevX, prevY, radius, 0, Math.PI * 2);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.strokeStyle = styles.text;
+                ctx.lineWidth = 2;
+                ctx.moveTo(prevX, prevY);
+                ctx.lineTo(px, py);
+                ctx.stroke();
+            }
+
+            const waveStartX = w * 0.45;
+            ctx.beginPath();
+            ctx.strokeStyle = styles.senary + '80';
+            ctx.setLineDash([4,4]);
+            ctx.moveTo(px, py);
+            ctx.lineTo(waveStartX, py);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.senary;
+            ctx.lineWidth = 3;
+            for(let x = 0; x < w * 0.5; x+=2) {
+                let t = globalTime - x/(w*0.5); 
+                let wy = 0;
+                for (let i = 0; i < N; i++) {
+                    let n = i * 2 + 1;
+                    let radius = 60 * (4 / (n * Math.PI));
+                    wy += radius * Math.sin(n * t * timeScale);
+                }
+                if (x===0) ctx.moveTo(waveStartX + x, cy + wy);
+                else ctx.lineTo(waveStartX + x, cy + wy);
+            }
+            ctx.stroke();
+        }
+
+        // SIMULATION 19: Animated Gradient Descent
+        let gdAnimating = false;
+        let currentW = 4.0;
+        let gdPath = [];
+        
+        function drawAnimatedGD(timestamp, dt) {
+            const canvas = document.getElementById('sim-gradient');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            const styles = getStyles();
+
+            const minX = -6, maxX = 6;
+            const maxY = 36;
+            const originX = w / 2;
+            const originY = h - 20;
+
+            const mapX = x => originX + (x / maxX) * (w / 2);
+            const mapY = y => originY - (y / maxY) * (originY - 20);
+
+            ctx.clearRect(0, 0, w, h);
+            drawGridAndAxes(ctx, w, h, originX, originY, styles, w/12, (originY - 20)/4);
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.text;
+            ctx.lineWidth = 3;
+            for(let px=0; px<=w; px+=2) {
+                let x = minX + (px/w)*(maxX - minX);
+                let y = x * x;
+                let py = mapY(y);
+                if(px===0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
+            }
+            ctx.stroke();
+
+            if(gdAnimating && dt < 100) { 
+                const alpha = 0.05; 
+                const gradient = 2 * currentW;
+                currentW = currentW - alpha * gradient * (dt/50);
+                if(gdPath.length === 0 || Math.abs(currentW - gdPath[gdPath.length-1].w) > 0.05) {
+                    gdPath.push({w: currentW, loss: currentW*currentW});
+                }
+                if(Math.abs(gradient) < 0.05) {
+                    gdAnimating = false; 
+                }
+            }
+
+            if(gdPath.length > 0) {
+                ctx.beginPath();
+                ctx.strokeStyle = styles.quinary;
+                ctx.lineWidth = 4;
+                ctx.moveTo(mapX(gdPath[0].w), mapY(gdPath[0].loss));
+                for(let i=1; i<gdPath.length; i++) {
+                    ctx.lineTo(mapX(gdPath[i].w), mapY(gdPath[i].loss));
+                }
+                ctx.stroke();
+            }
+
+            const loss = currentW * currentW;
+            const gradient = 2 * currentW;
+            
+            const pxWt = mapX(currentW);
+            const pyLoss = mapY(loss);
+
+            const tanLen = 1.5; 
+            const tanX1 = currentW - tanLen;
+            const tanY1 = loss - gradient * tanLen;
+            const tanX2 = currentW + tanLen;
+            const tanY2 = loss + gradient * tanLen;
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.quinary; 
+            ctx.lineWidth = 2;
+            ctx.moveTo(mapX(tanX1), mapY(tanY1));
+            ctx.lineTo(mapX(tanX2), mapY(tanY2));
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.fillStyle = styles.primary;
+            ctx.arc(pxWt, pyLoss, 8, 0, Math.PI*2);
+            ctx.fill();
+
+            const valW = document.getElementById('val-gd-w');
+            const valGrad = document.getElementById('val-gd-grad');
+            if(valW) valW.textContent = currentW.toFixed(2);
+            if(valGrad) valGrad.textContent = gradient.toFixed(2);
+        }
+
+        function updateRollingRace(timestamp, dt) {
+            if(raceAnimating && dt < 100) {
+                raceTime += dt / 2000; 
+                if(raceTime > 1.0) {
+                    raceTime = 1.0;
+                    raceAnimating = false;
+                }
+                const slider = document.getElementById('slide-race-t');
+                if(slider) slider.value = raceTime;
+                drawRollingRace();
+            }
+        }
+
+        // --- Master Animation Loop ---
+        function globalAnimate(timestamp) {
+            if(lastGlobalTime === 0) lastGlobalTime = timestamp;
+            const dt = timestamp - lastGlobalTime;
+            lastGlobalTime = timestamp;
+            globalTime += dt / 1000; 
+
+            drawPhaseSpace(timestamp, dt);
+            drawCoherentState(timestamp, dt);
+            drawFourierEpicycles(timestamp, dt);
+            drawAnimatedGD(timestamp, dt);
+            updateRollingRace(timestamp, dt);
+            drawFlywheel(timestamp);
+
+            requestAnimationFrame(globalAnimate);
+        }
+
+        // --- Init & Event Routing ---
         let resizeTimer;
-        function redrawAllSimulations() {
-            drawLever(); drawMomentOfInertia(); drawTaylor(); drawGaussian(); drawFourier();
-            drawQuantum(); drawPCA(); drawGradientDescent(); drawEntropy();
-            drawFunctionalProbes(); drawOrthogonalPolys(); drawCognitiveCompression();
-            drawRollingRace();
+        function redrawAllStaticSimulations() {
+            drawLever(); 
+            drawMomentOfInertia(); 
+            drawPowerProbe();
+            drawTaylor(); 
+            drawGaussian(); 
+            drawPCA(); 
+            drawEntropy();
+            drawFunctionalProbes(); 
+            drawOrthogonalPolys(); 
+            drawCognitiveCompression();
+            drawRollingRace(); 
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             generatePCAPoints();
             initCognitiveParticles();
             
-            // Kick off dynamic animations
-            requestAnimationFrame(drawFlywheel);
+            const btnRun = document.getElementById('btn-gd-run');
+            if(btnRun) {
+                btnRun.addEventListener('click', () => {
+                    gdAnimating = true;
+                });
+            }
+            
+            const btnReset = document.getElementById('btn-gd-reset');
+            if(btnReset) {
+                btnReset.addEventListener('click', () => {
+                    gdAnimating = false;
+                    currentW = 4.0;
+                    gdPath = [];
+                });
+            }
+            
+            const btnRace = document.getElementById('btn-race-toggle');
+            if(btnRace) {
+                btnRace.addEventListener('click', () => {
+                    raceTime = 0;
+                    raceAnimating = true;
+                    const slider = document.getElementById('slide-race-t');
+                    if(slider) slider.value = 0;
+                });
+            }
 
             const listeners = [
                 ['slide-m1', drawLever], ['slide-x1', drawLever],
                 ['slide-m2', drawLever], ['slide-x2', drawLever],
                 ['slide-inertia-dist', drawMomentOfInertia],
-                // Flywheel doesn't need explicit redraw on slide, the rAF handles it
-                ['slide-race-t', drawRollingRace],
+                ['slide-race-t', (e) => { 
+                    raceTime = parseFloat(e.target.value); 
+                    raceAnimating = false; 
+                    drawRollingRace(); 
+                }],
+                ['slide-power-n', drawPowerProbe],
                 ['slide-taylor-n', drawTaylor],
                 ['slide-gauss-mu', drawGaussian], ['slide-gauss-var', drawGaussian],
-                ['slide-fourier-n', drawFourier],
-                ['slide-quantum-n', drawQuantum],
                 ['slide-pca-theta', drawPCA],
-                ['slide-gd-w', drawGradientDescent],
                 ['slide-ent-p', drawEntropy],
                 ['slide-probe-type', drawFunctionalProbes],
                 ['slide-ortho-n', drawOrthogonalPolys], ['slide-ortho-m', drawOrthogonalPolys],
@@ -2538,10 +2935,13 @@
 
             window.addEventListener('resize', () => {
                 clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(redrawAllSimulations, 100);
+                resizeTimer = setTimeout(() => {
+                    redrawAllStaticSimulations();
+                }, 100);
             });
 
-            redrawAllSimulations();
+            redrawAllStaticSimulations();
+            requestAnimationFrame(globalAnimate);
         });
     </script>
 </body>
