@@ -1,0 +1,1855 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematics as Information Compression: The Definitive Edition</title>
+    
+    <!-- Tailwind CSS with Typography Plugin -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    
+    <!-- MathJax for rendering LaTeX -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Merriweather', 'Georgia', 'serif'],
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+        
+        .toc-link { transition: all 0.2s ease; }
+        .toc-link:hover { color: #2563eb; transform: translateX(4px); }
+        .dark .toc-link:hover { color: #60a5fa; }
+        .toc-link.active { color: #2563eb; font-weight: 600; border-left-color: #2563eb; }
+        .dark .toc-link.active { color: #60a5fa; border-left-color: #60a5fa; }
+        
+        /* Drop Cap for the first paragraph of every chapter */
+        .prose section > p:nth-of-type(1):first-letter {
+            float: left;
+            font-size: 4.5rem;
+            line-height: 0.8;
+            padding-top: 4px;
+            padding-right: 12px;
+            font-weight: 800;
+            color: #2563eb; 
+            font-family: 'Inter', sans-serif;
+            text-shadow: 2px 2px 0px rgba(37, 99, 235, 0.1);
+        }
+        .dark .prose section > p:nth-of-type(1):first-letter { 
+            color: #60a5fa; 
+            text-shadow: 2px 2px 0px rgba(96, 165, 250, 0.1);
+        }
+
+        /* Beautiful Blockquotes */
+        .prose blockquote {
+            border-left: 4px solid #3b82f6;
+            background: #eff6ff;
+            padding: 1.25rem 1.5rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            font-style: italic;
+            color: #1e3a8a;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: inset 2px 0 0 0 #3b82f6;
+        }
+        .dark .prose blockquote {
+            border-left-color: #60a5fa;
+            background: rgba(30, 58, 138, 0.3);
+            color: #bfdbfe;
+            box-shadow: inset 2px 0 0 0 #60a5fa;
+        }
+
+        /* Editorial Box Styles */
+        .ch-meta { display: flex; align-items: center; font-size: 0.875rem; font-weight: 500; margin-bottom: 1.5rem; color: #64748b; font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
+        .dark .ch-meta { color: #94a3b8; }
+        
+        .history-box { background-color: #fffbeb; border-left: 4px solid #f59e0b; padding: 1.25rem; margin: 2rem 0; border-radius: 0 0.75rem 0.75rem 0; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+        .dark .history-box { background-color: rgba(120, 53, 15, 0.2); border-left-color: #f59e0b; }
+        .history-box h4 { margin-top: 0; margin-bottom: 0.75rem; color: #92400e; font-weight: 700; display: flex; align-items: center; font-size: 1.125rem; font-family: 'Inter', sans-serif; }
+        .dark .history-box h4 { color: #fcd34d; }
+
+        .insight-box { background-color: #ecfdf5; border-left: 4px solid #10b981; padding: 1.25rem; margin: 2rem 0; border-radius: 0 0.75rem 0.75rem 0; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+        .dark .insight-box { background-color: rgba(6, 78, 59, 0.2); border-left-color: #10b981; }
+        .insight-box h4 { margin-top: 0; margin-bottom: 0.75rem; color: #065f46; font-weight: 700; display: flex; align-items: center; font-size: 1.125rem; font-family: 'Inter', sans-serif; }
+        .dark .insight-box h4 { color: #6ee7b7; }
+
+        .takeaway-box { background-color: #eff6ff; border-left: 4px solid #3b82f6; padding: 1.25rem; margin: 2rem 0; border-radius: 0 0.75rem 0.75rem 0; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+        .dark .takeaway-box { background-color: rgba(30, 58, 138, 0.2); border-left-color: #3b82f6; }
+        .takeaway-box h4 { margin-top: 0; margin-bottom: 0.75rem; color: #1e40af; font-weight: 700; display: flex; align-items: center; font-size: 1.125rem; font-family: 'Inter', sans-serif; }
+        .dark .takeaway-box h4 { color: #93c5fd; }
+
+        .summary-box { background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 1.5rem; margin: 2.5rem 0; border-radius: 1rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); }
+        .dark .summary-box { background-color: #1e293b; border-color: #334155; }
+        .summary-box h4 { margin-top: 0; margin-bottom: 1rem; color: #1e293b; font-weight: 800; font-size: 1.25rem; font-family: 'Inter', sans-serif; }
+        .dark .summary-box h4 { color: #f1f5f9; }
+        .summary-box ul { margin: 0; padding-left: 1.25rem; color: #334155; }
+        .dark .summary-box ul { color: #cbd5e1; }
+        .summary-box li { margin-bottom: 0.5rem; }
+
+        details.sidenote { background-color: #f5f3ff; border: 1px solid #ede9fe; border-radius: 0.75rem; padding: 1rem 1.25rem; margin: 2rem 0; transition: all 0.3s ease; }
+        .dark details.sidenote { background-color: rgba(76, 29, 149, 0.1); border-color: rgba(91, 33, 182, 0.5); }
+        details.sidenote summary { font-weight: 600; color: #6d28d9; cursor: pointer; outline: none; display: flex; align-items: center; font-family: 'Inter', sans-serif; list-style: none; }
+        details.sidenote summary::-webkit-details-marker { display: none; }
+        .dark details.sidenote summary { color: #a78bfa; }
+        details.sidenote[open] summary { margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid #ddd6fe; }
+        .dark details.sidenote[open] summary { border-bottom-color: rgba(91, 33, 182, 0.5); }
+        
+        .chapter-end { display: flex; align-items: center; justify-content: center; margin: 4rem 0; opacity: 0.6; }
+        .chapter-end svg { width: 2rem; height: 2rem; color: #94a3b8; }
+        .chapter-end::before, .chapter-end::after { content: ""; height: 1px; background-color: #cbd5e1; flex-grow: 1; margin: 0 1rem; }
+        .dark .chapter-end svg { color: #64748b; }
+        .dark .chapter-end::before, .dark .chapter-end::after { background-color: #334155; }
+
+        /* Styling for range inputs (sliders) */
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; height: 18px; width: 18px; border-radius: 50%;
+            background: #2563eb; cursor: pointer; margin-top: -7px;
+            transition: transform 0.1s, box-shadow 0.1s; box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
+        .dark input[type=range]::-webkit-slider-thumb { background: #60a5fa; }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: #cbd5e1; border-radius: 2px; }
+        .dark input[type=range]::-webkit-slider-runnable-track { background: #475569; }
+
+        /* Back to top button transition */
+        #back-to-top { opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease; transform: translateY(20px); }
+        #back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-200 transition-colors duration-300 font-sans selection:bg-blue-200 selection:text-blue-900 dark:selection:bg-blue-800 dark:selection:text-blue-100">
+
+    <!-- Reading Progress Bar -->
+    <div id="progress-container" class="fixed top-0 left-0 w-full h-1 z-[60] bg-transparent">
+        <div id="progress-bar" class="h-full bg-blue-600 dark:bg-blue-400 w-0 transition-all duration-150 ease-out"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <h1 class="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">
+                        Math as Compression
+                    </h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Toggle Dark Mode">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-slate-700 dark:text-slate-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-slate-700 dark:text-slate-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </button>
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md hover:bg-slate-200 dark:hover:bg-slate-800 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row relative">
+        
+        <!-- Sidebar Table of Contents -->
+        <aside id="sidebar" class="hidden md:block w-full md:w-64 flex-shrink-0 md:sticky md:top-24 md:h-[calc(100vh-8rem)] overflow-y-auto pr-6 mb-8 md:mb-0 border-b md:border-b-0 md:border-r border-slate-200 dark:border-slate-800">
+            <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-4">Table of Contents</h2>
+            <nav class="flex flex-col space-y-1 text-sm">
+                <a href="#chapter-1" class="toc-link block py-2 pl-3 border-l-2 border-transparent hover:border-slate-300 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200">1. Why Math Needs Compression</a>
+                <a href="#chapter-2" class="toc-link block py-2 pl-3 border-l-2 border-transparent hover:border-slate-300 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200">2. Archimedes & Moments</a>
+                <a href="#chapter-3" class="toc-link block py-2 pl-3 border-l-2 border-transparent hover:border-slate-300 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200">3. Averages & Center of Mass</a>
+                <a href="#chapter-4" class="toc-link block py-2 pl-3 border-l-2 border-transparent hover:border-slate-300 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200">4. Why Powers Matter</a>
+                <a href="#chapter-5" class="toc-link block py-2 pl-3 border-l-2 border-transparent hover:border-slate-300 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200">5. Taylor Series & Local Knowledge</a>
+                <a href="#chapter-6" class="toc-link block py-2 pl-3 border-l-2 border-transparent hover:border-slate-300 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200">6. Newtonian Mechanics</a>
+                <a href="#chapter-7" class="toc-link block py-2 pl-3 border-l-2 border-transparent hover:border-slate-300 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200">7. Probability & Statistics</a>
+                <a href="#chapter-8" class="toc-link block py-2 pl-3 border-l-2 border-transparent hover:border-slate-300 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200">8. Quantum Mechanics</a>
+                <a href="#chapter-9" class="toc-link block py-2 pl-3 border-l-2 border-transparent hover:border-slate-300 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200">9. Functional Analysis</a>
+                <a href="#chapter-10" class="toc-link block py-2 pl-3 border-l-2 border-transparent hover:border-slate-300 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200">10. Taylor vs. Fourier</a>
+                <a href="#chapter-11" class="toc-link block py-2 pl-3 border-l-2 border-transparent hover:border-slate-300 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200">11. Orthogonal Polynomials</a>
+                <a href="#chapter-12" class="toc-link block py-2 pl-3 border-l-2 border-transparent hover:border-slate-300 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200">12. Machine Learning & AI</a>
+                <a href="#chapter-13" class="toc-link block py-2 pl-3 border-l-2 border-transparent hover:border-slate-300 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200">13. Math as Info Compression</a>
+                <a href="#chapter-14" class="toc-link block py-2 pl-3 border-l-2 border-transparent hover:border-slate-300 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200">14. The Grand Synthesis</a>
+                <a href="#epilogue" class="toc-link block py-2 pl-3 border-l-2 border-transparent hover:border-slate-300 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200">Epilogue</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 md:pl-10">
+            <article class="prose prose-slate prose-lg dark:prose-invert max-w-3xl font-serif">
+                
+                <header class="mb-16 font-sans">
+                    <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">Mathematics as Information Compression</h1>
+                    <p class="text-xl text-slate-600 dark:text-slate-400 mb-2">From Counting Objects to Representing Reality</p>
+                    <div class="flex items-center text-sm font-medium text-slate-500 dark:text-slate-500">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Est. reading time: 60 mins
+                    </div>
+                </header>
+
+                <!-- Chapter 1 -->
+                <section id="chapter-1" class="scroll-mt-24">
+                    <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 1</h2>
+                    <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Why Mathematics Needs Compression</h3>
+                    <div class="ch-meta">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Est. read: 4 mins
+                    </div>
+                    
+                    <p>Imagine standing on a hill overlooking a city.</p>
+                    <p>At first glance, you see buildings, roads, vehicles, people, trees, rivers, electrical wires, clouds, shadows, and countless other details. If someone asks:</p>
+                    <blockquote>"Describe the city."</blockquote>
+                    <p>you immediately face a problem.</p>
+                    <p>The city contains far more information than can be communicated directly. Even if you spent years listing every object, every position, every color, every motion, and every relationship, the city would continue changing while you described it.</p>
+                    <p>Reality is always richer than our descriptions of it. This simple observation lies at the heart of science.</p>
+                    <p>The world contains an enormous amount of information. Human beings possess finite memory, finite time, finite computational ability, and finite language. Consequently, science cannot merely copy reality. Science must compress reality.</p>
+                    <p>This chapter develops a simple but profound thesis:</p>
+                    <blockquote>Mathematics is fundamentally a collection of compression techniques.</blockquote>
+                    <p>Many mathematical concepts that appear unrelated—averages, centers of mass, moments, Taylor series, probability distributions, Fourier coefficients, and even modern machine-learning features—can be understood as different methods for compressing complexity into manageable representations.</p>
+
+                    <div class="history-box">
+                        <h4>
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                            Historical Note: The Tally Bone
+                        </h4>
+                        <p class="text-base m-0">The Ishango bone, dating back over 20,000 years, contains tally marks that suggest early humans were already compressing collections of objects into abstract quantities. A series of scratches represented a herd of animals—the physical reality discarded, the quantity preserved.</p>
+                    </div>
+
+                    <h4>The First Compression: Counting</h4>
+                    <p>Suppose a shepherd has a flock of sheep. One possibility would be to remember every sheep individually. Another possibility would be to replace the entire flock by a single number:</p>
+                    \[ N=237 \]
+                    <p>This number does not capture every detail. It does not tell us which sheep are old, which are young, where each sheep is standing, or how fast each is moving. Yet it captures something important. The entire flock has been compressed into one quantity.</p>
+                    <p>The number of sheep is therefore one of humanity's earliest compression devices. A vast collection of objects becomes a single numerical summary. The number is not the flock. The number is a representation of the flock.</p>
+
+                    <h4>Measurement and Geometry as Compression</h4>
+                    <p>The same idea appears whenever we measure. An engineer often replaces the enormous complexity of a metal rod (atomic positions, microscopic defects, temperature variations) with a few measurements: Length (\( L \)), Mass (\( M \)), and Density (\( \rho \)). These numbers do not describe everything, but they describe enough for a particular purpose.</p>
+                    <p>In geometry, Euclid replaces the infinitely many points of a drawn circle with a few defining properties (center and radius). Instead of recording every point individually, geometry studies relationships. The object is represented not by its details but by its structure.</p>
+
+                    <h4>Why Nature Forces Compression</h4>
+                    <p>Consider the Earth. The Earth contains approximately \( 10^{50} \) atoms. Suppose we attempted to predict the future motion of every atom individually. Even writing down the initial conditions would be impossible. Nature therefore forces approximation. Physics succeeds not because it describes everything, but because it discovers effective summaries.</p>
+
+                    <div class="takeaway-box">
+                        <h4>
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            Key Takeaway
+                        </h4>
+                        <p class="text-base m-0">Mathematics advances by inventing structures that allow us to safely ignore irrelevant information. From counting to geometry, algebra to calculus, every major field is an answer to the same problem: How do we compress reality?</p>
+                    </div>
+
+                    <div class="summary-box">
+                        <h4>Chapter 1 Summary</h4>
+                        <ul>
+                            <li>Reality contains infinitely more information than we can process or communicate.</li>
+                            <li>Science cannot copy reality; it must compress it into manageable representations.</li>
+                            <li>Numbers, measurements, and geometric properties are humanity's earliest data compression algorithms.</li>
+                            <li>Mathematics is fundamentally the study and invention of these compression techniques.</li>
+                        </ul>
+                    </div>
+                    <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
+                </section>
+
+                <!-- Chapter 2 -->
+                <section id="chapter-2" class="scroll-mt-24">
+                    <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 2</h2>
+                    <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Archimedes and the Birth of Moments</h3>
+                    <div class="ch-meta">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Est. read: 5 mins
+                    </div>
+
+                    <p>If one had to choose a single physical device that quietly influenced the development of mathematics, physics, engineering, probability, and even modern artificial intelligence, the choice might seem surprising.</p>
+                    <p>Not the telescope. Not the clock. Not the computer.</p>
+                    <p>But the humble balance.</p>
+                    <p>Long before calculus, long before algebraic symbolism, and long before Newton, scholars were already confronted with a profound problem:</p>
+                    <blockquote>How can the influence of a thing depend not only on how much of it exists, but also on where it is located?</blockquote>
+                    <p>This question eventually produced the concept of a moment, one of the deepest and most widely used ideas in mathematics.</p>
+
+                    <h4>The Mystery of the Lever</h4>
+                    <p>Imagine a simple balance. A pivot is fixed at the center. A weight is placed on one side. The beam rotates. Nothing surprising. Now place another weight on the opposite side. Sometimes balance occurs. Sometimes it does not. Why?</p>
+                    <p>Ancient observers discovered something remarkable. Balance does not depend solely upon weight. Distance matters. A smaller weight placed far away can balance a larger weight placed nearby. For example:</p>
+                    \[ 10 \text{ kg} \times 1 \text{ m} = 5 \text{ kg} \times 2 \text{ m} \]
+                    <p>Ten kilograms one meter away balances five kilograms two meters away. This observation appears simple. Yet philosophically it is revolutionary. The effect of an object depends not merely on what it is but also on where it is. Location enters mathematics.</p>
+
+                    <div class="insight-box">
+                        <h4>
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                            Mathematical Insight: Why Multiply?
+                        </h4>
+                        <p class="text-base m-0">Why multiply mass and distance? Why not add? Observation shows that if mass doubles, influence doubles. If distance doubles, influence doubles. If either becomes zero, influence disappears. Multiplication is the simplest operation that perfectly encodes these boundary conditions simultaneously.</p>
+                    </div>
+
+                    <h4>The Birth of Influence</h4>
+                    <p>Ancient thinkers gradually realized that influence must somehow combine amount and location. The simplest combination is multiplication:</p>
+                    \[ \text{Influence} = \text{Mass} \times \text{Distance} \]
+                    <p>This quantity eventually became known as a <em>moment</em>. The word itself comes from the Latin <em>momentum</em>, suggesting movement, tendency, or influence. Originally it was not an abstract mathematical object. It was a measure of mechanical effectiveness.</p>
+
+                    <h4>Why is it called "Center"?</h4>
+                    <p>Take a ruler. Place a 1 kg weight at 20 cm and a 3 kg weight at 80 cm. Where should you place a finger so the ruler balances?</p>
+                    <p>Not at the midpoint (50 cm). The heavier mass pulls the balance point toward itself. That balancing point is the center of mass. Just as in a lever, \(\text{mass} \times \text{distance}\) must balance on both sides. The balance point moves toward the heavier object.</p>
+
+                    <!-- SIMULATION 1: The Lever -->
+                    <figure class="my-10 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 select-none font-sans overflow-hidden relative">
+                        <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-blue-500/10 dark:bg-blue-400/10 rounded-full blur-xl"></div>
+                        <h4 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2 mt-0">Interactive: The Archimedes Balance</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-snug">Adjust the masses and their positions. The system computes the Center of Mass (the fulcrum) required to perfectly balance the two objects.</p>
+                        
+                        <canvas id="sim-lever" width="800" height="200" class="w-full h-auto bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 mb-6"></canvas>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm font-semibold text-blue-600 dark:text-blue-400 mb-1">
+                                    <span>Mass 1 (m&sub1;)</span>
+                                    <span id="val-m1">10 kg</span>
+                                </div>
+                                <input type="range" id="slide-m1" min="1" max="20" value="10">
+                                
+                                <div class="flex justify-between text-sm font-semibold text-blue-600 dark:text-blue-400 mt-3 mb-1">
+                                    <span>Position 1 (x&sub1;)</span>
+                                    <span id="val-x1">2 m</span>
+                                </div>
+                                <input type="range" id="slide-x1" min="0" max="10" step="0.5" value="2">
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between text-sm font-semibold text-indigo-600 dark:text-indigo-400 mb-1">
+                                    <span>Mass 2 (m&sub2;)</span>
+                                    <span id="val-m2">5 kg</span>
+                                </div>
+                                <input type="range" id="slide-m2" min="1" max="20" value="5">
+                                
+                                <div class="flex justify-between text-sm font-semibold text-indigo-600 dark:text-indigo-400 mt-3 mb-1">
+                                    <span>Position 2 (x&sub2;)</span>
+                                    <span id="val-x2">8 m</span>
+                                </div>
+                                <input type="range" id="slide-x2" min="0" max="10" step="0.5" value="8">
+                            </div>
+                        </div>
+                        <div class="mt-6 text-center bg-slate-100 dark:bg-slate-700/50 p-3 rounded-lg border border-slate-200 dark:border-slate-600/50">
+                            <span class="text-sm font-medium text-slate-600 dark:text-slate-300">Equilibrium Point (Center of Mass): </span>
+                            <span id="val-cm" class="text-lg font-bold text-blue-600 dark:text-blue-400 ml-2">4.00 m</span>
+                        </div>
+                    </figure>
+
+                    <h4>The First Compression Algorithm</h4>
+                    <p>Archimedes realized something extraordinary. A complicated collection of weights could often be replaced by a single equivalent weight. Instead of recording a thousand individual masses and positions, one could compute a single representative point—the center of gravity. A complicated distribution becomes one meaningful number.</p>
+                    <p>Modern notation writes the first moment as:</p>
+                    \[ M_1 = \sum m_i x_i \quad \text{or} \quad M_1 = \int x\,dm \]
+                    <p>Mass alone tells us: <em>How much?</em> Position alone tells us: <em>Where?</em> The product \( mx \) combines both questions into one quantity simultaneously.</p>
+                    
+                    <p>The mathematical meaning of this balance is profound. If \( M = m_1 + m_2 \) is the total mass, the equation of balance can be written as:</p>
+                    \[ M x_{cm} = m_1 x_1 + m_2 x_2 \]
+                    <p>This says: <strong>The moment of the total mass placed at the center of mass equals the sum of the moments of all individual masses.</strong></p>
+
+                    <h4>The Deepest Interpretation</h4>
+                    <p>This leads to the deepest interpretation of the center of mass: <em>Replace many masses by a single equivalent mass placed at one special point.</em> This replacement preserves the total "mass × position" quantity.</p>
+                    <p>That is why when studying motion, an entire complicated system often behaves as if all its mass were concentrated at the center of mass. A cricket ball spinning through the air, the Earth-Moon system orbiting the Sun, or a rocket made of millions of atoms can all be treated as one particle located at their center of mass when analyzing translational motion. It compresses many particles into one effective point, much like how a single equation can summarize thousands of experimental observations.</p>
+                    
+                    <p>In electrostatics, if several charges are present, the electric field at a point is a sum of contributions from all charges. Similarly, the center of mass is a position obtained by summing the contributions of all masses, where each contributes proportionally to its size.</p>
+
+                    <h4>Why the Origin Matters</h4>
+                    <p>A moment depends upon where the origin is chosen. Move the origin, and the moment changes. At first this seems inconvenient, yet it reveals something profound. A moment is not an intrinsic property of an object; it describes the relationship between an object and a reference point. A moment is relational.</p>
+
+                    <div class="summary-box">
+                        <h4>Chapter 2 Summary</h4>
+                        <ul>
+                            <li>The balance beam forced early mathematicians to realize that physical influence requires combining mass and distance.</li>
+                            <li>This realization led to the concept of a <em>moment</em>.</li>
+                            <li>Multiplication naturally emerged to satisfy the physical boundary conditions of the lever.</li>
+                            <li>The center of mass acts as a compression algorithm, replacing thousands of distributed data points with a single summary coordinate.</li>
+                        </ul>
+                    </div>
+                    <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
+                </section>
+
+                <!-- Chapter 3 -->
+                <section id="chapter-3" class="scroll-mt-24">
+                    <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 3</h2>
+                    <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Center of Mass and Weighted Averages</h3>
+                    <div class="ch-meta">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Est. read: 4 mins
+                    </div>
+
+                    <p>At first glance the idea of moments appears to belong entirely to mechanics. Balances, levers, pivots, and forces seem far removed from statistics, economics, machine learning, and data science. Yet one of the most surprising developments in the history of mathematics is that the balance eventually transformed into the average.</p>
+
+                    <h4>What Does an Average Really Mean?</h4>
+                    <p>Students often learn that the average of numbers \( x_1, x_2, \dots, x_n \) is computed by dividing their sum by \( n \). This formula appears obvious. But why divide by \( n \)? What philosophical idea is hidden inside it?</p>
+                    <p>Suppose three students score 60, 70, and 80. The average is \( \frac{60+70+80}{3} = 70 \). Why divide by 3? Because each score is counted equally. In physics language, each score has equal "importance" or equal "weight".</p>
+                    <p>The ordinary average assumes that every observation is equally important. No score is privileged. Equal influence leads naturally to the ordinary average. But this assumption is not always true.</p>
+
+                    <h4>When Ordinary Averages Fail</h4>
+                    <p>Suppose you have two particles: 1 kg at 0 m, and 9 kg at 10 m. Why not simply take the ordinary average position?</p>
+                    \[ \frac{0+10}{2} = 5 \text{ m} \]
+                    <p>Physically, this is wrong. The 9 kg mass should pull the balance point much closer to itself. Using the center of mass formula:</p>
+                    \[ x_{cm} = \frac{1(0) + 9(10)}{1 + 9} = 9 \text{ m} \]
+                    <p>The center of mass lies at 9 m, much nearer the heavier object.</p>
+
+                    <p>Think about a crowd of people standing on a road. If 1 person stands at 0 m and 9 people stand at 10 m, and someone asks, "Where is the average location of the crowd?", you would not say 5 m. Most people are near 10 m, so the answer should be close to 10 m. The center of mass works exactly the same way. In statistics, the "importance" of a location is determined by the number of people. In mechanics, it is determined by mass.</p>
+
+                    <h4>The Merchant and the Nails</h4>
+                    <p>This same logic applies everywhere. Imagine a merchant purchasing rice. He buys:</p>
+                    <ul>
+                        <li>1 kilogram at ₹50/kg</li>
+                        <li>100 kilograms at ₹100/kg</li>
+                    </ul>
+                    <p>What is the average price? The naive answer is \( \frac{50+100}{2} = 75 \). The result is obviously misleading. Almost all the rice was purchased at ₹100/kg. Let us trace the correct calculation:</p>
+                    
+                    <ul>
+                        <li><strong>Given:</strong> Quantity 1 (\(w_1\)): 1 kg, Price 1 (\(x_1\)): ₹50/kg. Quantity 2 (\(w_2\)): 100 kg, Price 2 (\(x_2\)): ₹100/kg.</li>
+                        <li><strong>Governing Principle:</strong> Weighted average.</li>
+                        <li><strong>Formula:</strong> \[ \bar{x} = \frac{\sum w_i x_i}{\sum w_i} \]</li>
+                        <li><strong>Substitutions:</strong> \[ \bar{x} = \frac{1(50) + 100(100)}{1 + 100} \]</li>
+                        <li><strong>Intermediate steps:</strong> \[ \bar{x} = \frac{50 + 10000}{101} = \frac{10050}{101} \]</li>
+                        <li><strong>Final result:</strong> \[ \bar{x} \approx 99.50 \]</li>
+                        <li><strong>Physical meaning:</strong> The average price is overwhelmingly pulled toward the bulk purchase. The naive average destroys information; the weighted average preserves the reality of the transaction.</li>
+                    </ul>
+
+                    <p>Consider the nail-box analogy. Suppose you have two boxes of nails:</p>
+                    <ul>
+                        <li><strong>Box 1:</strong> 100 nails, length 5 cm</li>
+                        <li><strong>Box 2:</strong> 300 nails, length 9 cm</li>
+                    </ul>
+                    <p>You want the average nail length. A simple average gives \(\frac{5+9}{2} = 7 \text{ cm}\). Wrong! Because there are three times more 9-cm nails. The correct average is a weighted mean:</p>
+                    \[ \bar{l} = \frac{100(5) + 300(9)}{100 + 300} = 8 \text{ cm} \]
+                    <p>The "weights" are the numbers of nails.</p>
+
+                    <h4>The Hidden Balance</h4>
+                    <p>Now notice something remarkable. The weighted average formula</p>
+                    \[ \bar{x} = \frac{\sum w_i x_i}{\sum w_i} \]
+                    <p>looks strikingly similar to the center of mass formula</p>
+                    \[ x_{cm} = \frac{\sum m_i x_i}{\sum m_i} \]
+                    <p>The structure is identical. Only the interpretation changes. In mechanics, \( w_i=m_i \). In statistics, \( w_i=\text{frequency} \). In economics, \( w_i=\text{quantity} \). The physical balance has quietly migrated into abstract analysis.</p>
+
+                    <p>We can map these concepts directly. In the nail problem, <em>Length</em> corresponds to <em>Position</em>, and <em>Number of nails</em> corresponds to <em>Mass</em>. The average length is exactly the center of mass.</p>
+                    
+                    <p>Imagine another picture: votes in an election. Suppose Position A gets 100 votes and Position B gets 10,000 votes. The final result is not the simple average of the two positions. Each position contributes according to its votes. Mass plays the role of votes. More mass equals more influence.</p>
+
+                    <p>This naturally leads to a physical interpretation in probability theory. If we define fractions of total mass as probabilities:</p>
+                    \[ p_1 = \frac{m_1}{m_1+m_2}, \qquad p_2 = \frac{m_2}{m_1+m_2} \]
+                    <p>Then the formula becomes:</p>
+                    \[ x_{cm} = p_1 x_1 + p_2 x_2 \]
+                    <p>Since the fractions \( p_1 \) and \( p_2 \) add to 1, the Center of Mass is simply the <em>expected position</em> when masses act as probability weights.</p>
+                    
+                    <p>This is why center of mass appears everywhere, under different names:</p>
+                    <ul>
+                        <li><strong>Mechanics:</strong> Balance point</li>
+                        <li><strong>Statistics:</strong> Weighted mean</li>
+                        <li><strong>Probability:</strong> Expectation value</li>
+                        <li><strong>Numerical Analysis:</strong> Weighted averages</li>
+                    </ul>
+                    <p>The center of mass is not a mysterious new concept. Mathematically, it is simply a weighted average, where the weights are the fractions of total mass carried by each particle.</p>
+
+                    <details class="sidenote">
+                        <summary>
+                            <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Expandable Side Note: Center of Mass vs. Centroid
+                        </summary>
+                        <div class="mt-3 text-slate-700 dark:text-slate-300">
+                            <p>Are the center of mass and the geometric centroid the same thing? Yes, but only if the density of the object is perfectly uniform. The centroid is a purely geometric property based on shape (where \( w_i \) is area or volume). The center of mass is physical (where \( w_i \) is mass). If an object is heavier on one side, its center of mass shifts toward the heavy side, while its centroid remains fixed by its geometry.</p>
+                        </div>
+                    </details>
+
+                    <h4>The Need for Additional Measurements</h4>
+                    <p>Suppose we know only the center of mass. Can we reconstruct the original distribution? Generally not. Different distributions may share the same center. For example: \( (-1,+1) \) and \( (-100,+100) \) both possess center zero. The first moment cannot distinguish them. More information is needed.</p>
+
+                    <div class="summary-box">
+                        <h4>Chapter 3 Summary</h4>
+                        <ul>
+                            <li>The ordinary average assumes equal weighting, which fails in many real-world scenarios.</li>
+                            <li>The historical route flowed from concrete physics to abstract statistics: Balance &rarr; Lever law &rarr; Moments &rarr; Center of mass &rarr; Weighted average.</li>
+                            <li>The weighted average formula is mathematically identical to the physical center of mass formula.</li>
+                            <li>This transformation shows how concepts born in physical reality migrate to describe abstract informational spaces.</li>
+                            <li>A single average (the first moment) compresses data so aggressively that diverse datasets can look identical, necessitating higher moments.</li>
+                        </ul>
+                    </div>
+                    <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
+                </section>
+
+                <!-- Chapter 4 -->
+                <section id="chapter-4" class="scroll-mt-24">
+                    <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 4</h2>
+                    <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Why Powers Matter</h3>
+                    <div class="ch-meta">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Est. read: 5 mins
+                    </div>
+
+                    <p>At first glance, the progression \( 1, x, x^2, x^3, x^4, \dots \) appears almost trivial. School students manipulate powers constantly. Yet one of the deepest facts in mathematics is that these powers form a hierarchy of increasingly refined measurements.</p>
+                    
+                    <h4>The Limitation of a Single Measurement</h4>
+                    <p>Imagine two villages. Village A contains 100 people. Village B also contains 100 people. If population is the only measurement available, the villages appear identical. Yet one village may occupy a small area while the other is spread over many square kilometers. A second measurement becomes necessary. This pattern appears throughout science.</p>
+
+                    <h4>A Hierarchy of Sensitivity</h4>
+                    <p>The powers form a natural hierarchy. Each successive power probes finer aspects of a distribution:</p>
+                    <ul>
+                        <li><strong>Zeroth Moment (\( \int dm \)):</strong> Measures total quantity (How much?).</li>
+                        <li><strong>First Moment (\( \int x\,dm \)):</strong> Measures location (Where?).</li>
+                        <li><strong>Second Moment (\( \int x^2\,dm \)):</strong> Measures spread. Because \( 100^2=10000 \) while \( 1^2=1 \), distant points contribute enormously more.</li>
+                        <li><strong>Third Moment (\( \int x^3\,dm \)):</strong> Measures asymmetry (skewness). Odd powers distinguish left from right.</li>
+                        <li><strong>Fourth Moment (\( \int x^4\,dm \)):</strong> Measures extremes (kurtosis). Highly sensitive to tail behavior.</li>
+                    </ul>
+                    <p>Higher powers emphasize increasingly distant points. Imagine a magnifying glass: each new power increases sensitivity.</p>
+
+                    <h4>The Ultimate Compression: The Moment Generating Function</h4>
+                    <p>If storing a sequence of moments \( (M_0, M_1, M_2 \dots) \) compresses reality, mathematicians eventually found a way to compress that sequence itself into a single, elegant equation known as the Moment Generating Function (MGF).</p>
+                    <p>By taking the expected value of the exponential function \( e^{tX} \), and remembering that the Taylor expansion of \( e^{tX} \) is \( 1 + tX + \frac{(tX)^2}{2!} + \dots \), we get:</p>
+                    \[ M_X(t) = E[e^{tX}] = 1 + tM_1 + \frac{t^2}{2!}M_2 + \frac{t^3}{3!}M_3 + \dots \]
+                    <p>This is a staggering achievement of compression. A single function, \( M_X(t) \), now perfectly encodes the entire infinite sequence of moments.</p>
+
+                    <div class="insight-box">
+                        <h4>
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                            Mathematical Insight: Extracting Information
+                        </h4>
+                        <p class="text-base m-0">How do you extract a specific moment from the MGF? You simply take the derivative of \( M_X(t) \) with respect to \( t \), and evaluate it at \( t=0 \). The \( n \)-th derivative isolates the \( n \)-th moment. Calculus acts as a scalpel to retrieve precisely the information you want.</p>
+                    </div>
+
+                    <div class="summary-box">
+                        <h4>Chapter 4 Summary</h4>
+                        <ul>
+                            <li>Polynomial powers (\( x^n \)) act as mathematical probes of varying sensitivities.</li>
+                            <li>As \( n \) increases, the probe becomes exponentially more sensitive to distant, extreme data points.</li>
+                            <li>An infinite sequence of these moments can theoretically define a distribution perfectly.</li>
+                            <li>The Moment Generating Function compresses the entire infinite sequence of moments into a single analytic function.</li>
+                        </ul>
+                    </div>
+                    <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
+                </section>
+
+                <!-- Chapter 5 -->
+                <section id="chapter-5" class="scroll-mt-24">
+                    <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 5</h2>
+                    <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Taylor Series and the Philosophy of Local Knowledge</h3>
+                    <div class="ch-meta">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Est. read: 5 mins
+                    </div>
+
+                    <p>Among all mathematical inventions, few have had as much influence on science as the Taylor series. To many students, it appears to be merely a computational trick in calculus:</p>
+                    \[ f(x) = f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \cdots \]
+                    <p>Yet this formula hides a profound philosophical idea. It answers one of the deepest questions in science: <em>How can we understand a complicated, global object by examining only a tiny, infinitesimal neighborhood around it?</em></p>
+
+                    <h4>Local Knowledge</h4>
+                    <p>Suppose we know a function only near one point. Can we describe the entire curve? Taylor's insight was astonishing: extract information layer by layer using derivatives.</p>
+                    <ul>
+                        <li><strong>Zeroth Level (\( f(a) \)):</strong> Tells us where the function is (position).</li>
+                        <li><strong>First Level (\( f'(a) \)):</strong> Tells us the slope (velocity, direction).</li>
+                        <li><strong>Second Level (\( f''(a) \)):</strong> Measures curvature (acceleration).</li>
+                    </ul>
+                    <p>Each derivative captures a subtler aspect of local behavior. And notice something familiar: the powers reappear. Moments measure a distribution by multiplying it with powers. Taylor series builds the object *from* powers.</p>
+
+                    <!-- SIMULATION 2: Taylor Series -->
+                    <figure class="my-10 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 select-none font-sans overflow-hidden relative">
+                        <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-emerald-500/10 dark:bg-emerald-400/10 rounded-full blur-xl"></div>
+                        <h4 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2 mt-0">Interactive: Taylor Series Approximation</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-snug">Observe how adding higher-order polynomial powers (the Taylor coefficients) allows a simple curve to perfectly wrap around the complex, true function \( f(x) = \sin(x) \).</p>
+                        
+                        <canvas id="sim-taylor" width="800" height="300" class="w-full h-auto bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 mb-6"></canvas>
+                        
+                        <div>
+                            <div class="flex justify-between text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-1">
+                                <span>Order of Approximation (N)</span>
+                                <span id="val-taylor-n">Order: 1</span>
+                            </div>
+                            <input type="range" id="slide-taylor-n" min="1" max="13" step="2" value="1">
+                            <div class="mt-4 p-3 bg-slate-100 dark:bg-slate-700/50 rounded-lg border border-slate-200 dark:border-slate-600/50 flex justify-center items-center">
+                                <span class="text-sm font-medium text-slate-600 dark:text-slate-300 mr-2">Polynomial: </span>
+                                <span class="text-lg font-bold text-emerald-600 dark:text-emerald-400" id="val-taylor-eq">f(x) &approx; x</span>
+                            </div>
+                        </div>
+                    </figure>
+
+                    <div class="history-box">
+                        <h4>
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                            Historical Note: Brook Taylor & Indian Calculus
+                        </h4>
+                        <p class="text-base m-0">While Brook Taylor published his series in 1715, similar power series expansions for sine, cosine, and arctangent were discovered by Madhava of Sangamagrama in India over 300 years earlier (around 1400 CE). The desire to calculate accurate astronomical tables drove the invention of polynomial approximations long before modern European calculus.</p>
+                    </div>
+
+                    <h4>Taylor Series as Compression</h4>
+                    <p>A continuous function contains infinitely many values. Instead of storing all values individually, Taylor theory stores the coefficients: \( a_0, a_1, a_2, \dots \). The entire function is replaced by a structured sequence of numbers. Just as moments compress distributions, Taylor coefficients compress local behavior.</p>
+
+                    <div class="summary-box">
+                        <h4>Chapter 5 Summary</h4>
+                        <ul>
+                            <li>Taylor series reconstructs global functions exclusively from local, infinitesimal information (derivatives) at a single point.</li>
+                            <li>The powers of \( x \) serve as architectural building blocks to synthesize curves.</li>
+                            <li>This represents a profound philosophical stance: that the future or the distant can be generated from deep knowledge of the present.</li>
+                            <li>Storing Taylor coefficients compresses infinite curves into finite numeric sequences.</li>
+                        </ul>
+                    </div>
+                    <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
+                </section>
+
+                <!-- Chapter 6 -->
+                <section id="chapter-6" class="scroll-mt-24">
+                    <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 6</h2>
+                    <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Newtonian Mechanics and the Rise of Polynomial Physics</h3>
+                    <div class="ch-meta">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Est. read: 4 mins
+                    </div>
+
+                    <p>Taylor expansions ceased to be merely mathematical tools; they became the language of physics itself. Newtonian mechanics transformed the study of nature into the study of derivatives, differential equations, and polynomial approximations.</p>
+
+                    <h4>Motion Before Newton</h4>
+                    <p>Ancient astronomers predicted planetary motion by recording previous observations and interpolating new values in massive tables. But predicting future motion required a method for generating future information from present information.</p>
+
+                    <h4>The Newtonian Revolution</h4>
+                    <p>Newton introduced a radical idea. Instead of studying positions, study the laws governing change itself:</p>
+                    <p>Position: \( x(t) \)</p>
+                    <p>Velocity: \( v(t)=\frac{dx}{dt} \)</p>
+                    <p>Acceleration: \( a(t)=\frac{d^2x}{dt^2} \)</p>
+
+                    <p>Expand position around time \( t \):</p>
+                    \[ x(t+h) = x(t) +h\frac{dx}{dt} +\frac{h^2}{2!}\frac{d^2x}{dt^2} + \cdots \]
+                    <p>Future motion is encoded within present derivatives. This became one of the central assumptions of classical science: polynomial thinking.</p>
+
+                    <details class="sidenote">
+                        <summary>
+                            <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Expandable Side Note: Laplace's Demon
+                        </summary>
+                        <div class="mt-3 text-slate-700 dark:text-slate-300">
+                            <p>This deterministic philosophy reached its peak with Pierre-Simon Laplace. He proposed that an intellect (a "demon") which knows the exact position and momentum of every particle in the universe, along with the forces acting upon them, could use Newton's differential equations to calculate the entire past and future. While quantum mechanics and chaos theory later dismantled this absolute determinism, it remains one of the most powerful scientific paradigms ever conceived.</p>
+                        </div>
+                    </details>
+
+                    <h4>Differential Equations as Compression</h4>
+                    <p>Consider a planetary orbit. The complete trajectory contains infinitely many points. Instead of storing all points individually, Newton writes: \( F=ma \), or</p>
+                    \[ m\frac{d^2x}{dt^2} = F(x,t) \]
+                    <p>An entire motion is compressed into a differential equation. A small symbolic expression generates an enormous amount of information.</p>
+
+                    <div class="summary-box">
+                        <h4>Chapter 6 Summary</h4>
+                        <ul>
+                            <li>Newtonian mechanics shifted focus from tracking raw positions to tracking the derivatives of motion.</li>
+                            <li>Future trajectories are generated entirely from local conditions using Taylor-like polynomial expansion.</li>
+                            <li>Differential equations serve as extreme mathematical compression, encoding infinite motion paths into brief symbolic rules.</li>
+                        </ul>
+                    </div>
+                    <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
+                </section>
+
+                <!-- Chapter 7 -->
+                <section id="chapter-7" class="scroll-mt-24">
+                    <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 7</h2>
+                    <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Probability, Statistics, and the Escape of Moments</h3>
+                    <div class="ch-meta">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Est. read: 5 mins
+                    </div>
+
+                    <p>One of the most remarkable developments in the history of mathematics is that moments eventually escaped mechanics altogether. They entered a completely different domain: the mathematics of uncertainty.</p>
+                    <p>When ancient gamblers tossed coins or dice, they needed a way to assign numerical values to unknown outcomes. A new mathematical challenge emerged: How can uncertainty itself be represented mathematically?</p>
+
+                    <h4>The Mean as a Center of Mass</h4>
+                    <p>Suppose we know a table of values and their probabilities. We ask: What is the average outcome? Immediately a familiar formula appears:</p>
+                    \[ \mu = \sum xP(x) \]
+                    <p>Notice the similarity to the center of mass (\( x_{cm} = \frac{\sum m_i x_i}{\sum m_i} \)). Since probabilities sum to one, the denominator disappears. The mean is literally a weighted average. The mechanical balance has become probability theory.</p>
+
+                    <!-- SIMULATION 3: Gaussian Distribution -->
+                    <figure class="my-10 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 select-none font-sans overflow-hidden relative">
+                        <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-rose-500/10 dark:bg-rose-400/10 rounded-full blur-xl"></div>
+                        <h4 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2 mt-0">Interactive: The Gaussian (Normal) Distribution</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-snug">An infinite, complex probability space can be completely compressed and represented by just its first two moments: the Mean (&mu;) indicating location, and the Variance (&sigma;&sup2;) indicating spread.</p>
+                        
+                        <canvas id="sim-gaussian" width="800" height="300" class="w-full h-auto bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 mb-6"></canvas>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm font-semibold text-rose-500 dark:text-rose-400 mb-1">
+                                    <span>First Moment: Mean (&mu;)</span>
+                                    <span id="val-gauss-mu">0.0</span>
+                                </div>
+                                <input type="range" id="slide-gauss-mu" min="-3" max="3" step="0.1" value="0">
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between text-sm font-semibold text-amber-500 dark:text-amber-500 mb-1">
+                                    <span>Second Moment: Variance (&sigma;&sup2;)</span>
+                                    <span id="val-gauss-var">1.0</span>
+                                </div>
+                                <input type="range" id="slide-gauss-var" min="0.2" max="3" step="0.1" value="1">
+                            </div>
+                        </div>
+                    </figure>
+
+                    <h4>The Hierarchy Reappears</h4>
+                    <p>The mean alone cannot distinguish between a tight cluster of data and widely dispersed extremes. Thus, variance (second moment, \( \sigma^2 \)), skewness (third moment), and kurtosis (fourth moment) were adopted directly from mechanics.</p>
+                    <p>The Gaussian distribution provides the perfect example of compression. The formula \( p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \) is entirely determined by just two numbers: the mean (\( \mu \)) and variance (\( \sigma^2 \)). An infinite bell curve is compressed into two moments.</p>
+
+                    <div class="takeaway-box">
+                        <h4>
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            Key Takeaway
+                        </h4>
+                        <p class="text-base m-0">The same mathematical architecture—using powers to summarize mass—mapped flawlessly onto summarizing probability. Statistics is the science of information reduction applied to uncertainty.</p>
+                    </div>
+
+                    <div class="summary-box">
+                        <h4>Chapter 7 Summary</h4>
+                        <ul>
+                            <li>Moments transcended physical mechanics to describe probability and uncertainty.</li>
+                            <li>The statistical mean is mechanically equivalent to the center of mass.</li>
+                            <li>The Gaussian distribution demonstrates how complex, infinite probability spaces can be perfectly compressed using just the first two moments.</li>
+                        </ul>
+                    </div>
+                    <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
+                </section>
+
+                <!-- Chapter 8 -->
+                <section id="chapter-8" class="scroll-mt-24">
+                    <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 8</h2>
+                    <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Quantum Mechanics and the Transformation of Moments</h3>
+                    <div class="ch-meta">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Est. read: 5 mins
+                    </div>
+
+                    <p>In classical physics, a particle possesses exact position and momentum. Quantum mechanics introduced a radically different framework. Instead of assigning a definite position, quantum theory introduces a wavefunction \( \psi(x) \). What can be observed is \( |\psi(x)|^2 \), which acts as a probability density. Probability becomes fundamental to the object itself.</p>
+
+                    <h4>The Return of Moments</h4>
+                    <p>Once probability enters physics, moments return immediately. The average position becomes:</p>
+                    \[ \langle x \rangle = \int x|\psi(x)|^2dx \]
+                    <p>This is called an expectation value. It is, structurally, the exact same equation as Archimedes' center of mass.</p>
+
+                    <!-- SIMULATION 5: Quantum Harmonic Oscillator -->
+                    <figure class="my-10 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 select-none font-sans overflow-hidden relative">
+                        <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-purple-500/10 dark:bg-purple-400/10 rounded-full blur-xl"></div>
+                        <h4 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2 mt-0">Interactive: Quantum Probability Density</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-snug">Visualizing the probability density \( |\psi_n(x)|^2 \) of a quantum particle at different energy states (n). Notice how the particle spreads out at higher states, increasing the second moment (uncertainty/spread) \( \langle x^2 \rangle \).</p>
+                        
+                        <canvas id="sim-quantum" width="800" height="300" class="w-full h-auto bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 mb-6"></canvas>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm font-semibold text-rose-600 dark:text-rose-400 mb-1">
+                                    <span>Energy State (n)</span>
+                                    <span id="val-quantum-n">State: n = 0</span>
+                                </div>
+                                <input type="range" id="slide-quantum-n" min="0" max="5" step="1" value="0">
+                            </div>
+                            <div class="flex items-center justify-center bg-slate-100 dark:bg-slate-700/50 p-2 rounded-lg border border-slate-200 dark:border-slate-600/50">
+                                <span class="text-sm font-medium text-slate-600 dark:text-slate-300">Spread: </span>
+                                <span id="val-quantum-spread" class="ml-2 text-lg font-bold text-purple-600 dark:text-purple-400">&langle;x&sup2;&rangle; &prop; 0.5</span>
+                            </div>
+                        </div>
+                    </figure>
+
+                    <div class="insight-box">
+                        <h4>
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                            Mathematical Insight: Heisenberg's Uncertainty
+                        </h4>
+                        <p class="text-base m-0">The famous equation \( \Delta x \Delta p \ge \frac{\hbar}{2} \) uses the symbol \( \Delta \), which represents standard deviation (the square root of variance). The Uncertainty Principle is fundamentally a statement about second moments. It declares a limit on how small the second moments of position and momentum can simultaneously be.</p>
+                    </div>
+
+                    <div class="summary-box">
+                        <h4>Chapter 8 Summary</h4>
+                        <ul>
+                            <li>In Quantum Mechanics, exact positions are replaced by probability wavefunctions.</li>
+                            <li>Expectation values in quantum physics are simply statistical moments calculated over these wavefunctions.</li>
+                            <li>The Heisenberg Uncertainty principle is built entirely on the mathematical limits of the second moment (variance).</li>
+                        </ul>
+                    </div>
+                    <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
+                </section>
+
+                <!-- Chapter 9 -->
+                <section id="chapter-9" class="scroll-mt-24">
+                    <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 9</h2>
+                    <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Functional Analysis and the Philosophy of Probes</h3>
+                    <div class="ch-meta">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Est. read: 3 mins
+                    </div>
+
+                    <p>What is the essence of a moment? Is it about mass? Is it about probability? Is it about quantum states? Or is there something deeper? Mathematicians realized the true importance of a moment is not the object being studied, but the measurement itself.</p>
+
+                    <h4>The Idea of a Probe</h4>
+                    <p>Imagine a doctor. A doctor rarely sees every process occurring inside the body. Instead the doctor performs tests: Blood pressure, temperature, heart rate. Each test acts as a probe. Functional analysis adopts a similar philosophy. A complicated mathematical function becomes known through probes.</p>
+
+                    <p>The moment \( \int x^n f(x)\,dx \) can be viewed as a question. The function responds with a number. Different powers ask different questions. This shift moves attention from the object itself to the operations performed on the object.</p>
+
+                    <div class="history-box">
+                        <h4>
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                            Historical Note: David Hilbert
+                        </h4>
+                        <p class="text-base m-0">David Hilbert realized that spaces of functions could be studied geometrically, possessing lengths, distances, and angles. How can two functions form an angle? The concept of Hilbert spaces proved enormously powerful and eventually provided the strict mathematical foundation for all of quantum mechanics.</p>
+                    </div>
+
+                    <div class="summary-box">
+                        <h4>Chapter 9 Summary</h4>
+                        <ul>
+                            <li>Functional analysis shifts focus from studying mathematical objects directly to studying the <em>measurements</em> we can extract from them.</li>
+                            <li>Moments are redefined not as physical properties, but as "probes" or "questions" we ask a function.</li>
+                            <li>We never fully grasp a complex object; we construct measurements, and the collection of these measurements builds our understanding.</li>
+                        </ul>
+                    </div>
+                    <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
+                </section>
+
+                <!-- Chapter 10 -->
+                <section id="chapter-10" class="scroll-mt-24">
+                    <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 10</h2>
+                    <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Taylor Series, Fourier Series, and Two Philosophies</h3>
+                    <div class="ch-meta">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Est. read: 5 mins
+                    </div>
+
+                    <p>Throughout this book we encountered the hierarchy of powers. But in the 18th century, another language emerged: \( \sin x, \cos x, \sin 2x, \cos 2x, \dots \). This language became known as Fourier analysis. If Taylor series represents one philosophy of mathematical knowledge, Fourier series represents another.</p>
+
+                    <h4>Powers versus Waves</h4>
+                    <p>Taylor assumes local behavior is fundamental. Near a point, a function is constructed from powers. The philosophy is local: knowledge near one point generates knowledge nearby.</p>
+                    <p>Fourier begins differently. He uses oscillating waves. A complicated signal becomes a collection of simple waves:</p>
+                    \[ f(x) = a_0 + \sum_{n=1}^{\infty} \left( a_n\cos nx +b_n\sin nx \right) \]
+
+                    <!-- SIMULATION 4: Fourier Synthesis -->
+                    <figure class="my-10 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 select-none font-sans overflow-hidden relative">
+                        <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-fuchsia-500/10 dark:bg-fuchsia-400/10 rounded-full blur-xl"></div>
+                        <h4 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2 mt-0">Interactive: Fourier Synthesis</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-snug">Instead of polynomial powers, Fourier analysis uses oscillating waves as probes. See how stacking odd sine-wave harmonics progressively compresses and represents a complex square wave.</p>
+                        
+                        <canvas id="sim-fourier" width="800" height="300" class="w-full h-auto bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 mb-6"></canvas>
+                        
+                        <div>
+                            <div class="flex justify-between text-sm font-semibold text-fuchsia-600 dark:text-fuchsia-400 mb-1">
+                                <span>Number of Harmonics</span>
+                                <span id="val-fourier-n">1 Harmonic</span>
+                            </div>
+                            <input type="range" id="slide-fourier-n" min="1" max="21" step="2" value="1">
+                        </div>
+                    </figure>
+
+                    <details class="sidenote">
+                        <summary>
+                            <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Expandable Side Note: Orthogonality
+                        </summary>
+                        <div class="mt-3 text-slate-700 dark:text-slate-300">
+                            <p>Why do Fourier coefficients work so well? Because sine and cosine functions are orthogonal. Roughly speaking, \( \int \sin(mx)\sin(nx)\,dx = 0 \) when \( m \neq n \). Different frequencies do not interfere. The situation resembles using perpendicular axes in geometry, allowing clean, independent data extraction.</p>
+                        </div>
+                    </details>
+
+                    <h4>The Hidden Connection</h4>
+                    <p>Although Taylor and Fourier appear different, both rely upon the same fundamental idea: A complicated object can be represented through a sequence of numbers (coefficients). JPEG compression relies heavily on Fourier-like ideas, turning millions of pixels into a few coefficients.</p>
+
+                    <div class="summary-box">
+                        <h4>Chapter 10 Summary</h4>
+                        <ul>
+                            <li>Taylor expansion uses polynomial powers to extract local knowledge.</li>
+                            <li>Fourier expansion uses oscillating waves to extract global structural frequencies.</li>
+                            <li>Both act as functional "probes" designed to compress and represent reality numerically.</li>
+                        </ul>
+                    </div>
+                    <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
+                </section>
+
+                <!-- Chapter 11 -->
+                <section id="chapter-11" class="scroll-mt-24">
+                    <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 11</h2>
+                    <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Orthogonal Polynomials</h3>
+                    <div class="ch-meta">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Est. read: 4 mins
+                    </div>
+
+                    <p>Can we construct better probes? Simple powers are often inefficient because they are not geometrically independent. On an interval, \( x^2 \) and \( x^4 \) share substantial overlap. Information becomes entangled.</p>
+
+                    <h4>Orthogonal Functions</h4>
+                    <p>Mathematicians sought probes that act completely independently, like perpendicular axes in geometry. This led to Orthogonal Polynomials, such as Legendre, Hermite, and Chebyshev polynomials. These specialized probes ensured that the information extracted by one coefficient did not bleed into another.</p>
+                    
+                    <p>Historically, nature seemed to prefer these orthogonal tools; Hermite polynomials naturally govern quantum harmonic oscillators, and Chebyshev polynomials dominate numerical computing.</p>
+
+                    <div class="takeaway-box">
+                        <h4>
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            Key Takeaway
+                        </h4>
+                        <p class="text-base m-0">Mathematics advances by inventing better questions. Simple powers ask "How much \(x^n\)?", Fourier asks "How much frequency?", and Orthogonal Polynomials ask perfectly disentangled, independent questions, preventing information overlap.</p>
+                    </div>
+
+                    <div class="summary-box">
+                        <h4>Chapter 11 Summary</h4>
+                        <ul>
+                            <li>Standard polynomial powers overlap geometrically, creating computational inefficiency.</li>
+                            <li>Orthogonal polynomials (Legendre, Hermite) act as mathematically independent "perpendicular" probes.</li>
+                            <li>These polynomials naturally map onto fundamental physical structures, like quantum oscillators.</li>
+                        </ul>
+                    </div>
+                    <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
+                </section>
+
+                <!-- Chapter 12 -->
+                <section id="chapter-12" class="scroll-mt-24">
+                    <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 12</h2>
+                    <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Machine Learning and AI</h3>
+                    <div class="ch-meta">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Est. read: 7 mins
+                    </div>
+
+                    <p>When people hear "Artificial Intelligence," they often imagine something completely modern—massive data centers and deep neural networks. Yet, beneath these innovations lies the exact same ancient philosophical pattern: How can an enormously complicated object be represented by a manageable collection of numbers?</p>
+
+                    <h4>Features as Modern Moments</h4>
+                    <p>A digital photograph contains millions of pixels; no human or computer can process that raw complexity efficiently. In machine learning, we extract "features." A feature—whether it measures edge density or semantic patterns—acts exactly like a mathematical moment. The raw data remain hidden. The measurements become visible.</p>
+
+                    <!-- SIMULATION 6: PCA / Data Compression -->
+                    <figure class="my-10 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 select-none font-sans overflow-hidden relative">
+                        <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-blue-500/10 dark:bg-blue-400/10 rounded-full blur-xl"></div>
+                        <h4 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2 mt-0">Interactive: Principal Component Compression</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-snug">To compress 2D data into a single 1D "feature", Machine Learning algorithms rotate a projection axis to maximize the Variance (information) retained. Adjust the projection angle to find the principal component.</p>
+                        
+                        <canvas id="sim-pca" width="800" height="300" class="w-full h-auto bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 mb-6"></canvas>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm font-semibold text-blue-600 dark:text-blue-400 mb-1">
+                                    <span>Projection Angle (&theta;)</span>
+                                    <span id="val-pca-theta">45&deg;</span>
+                                </div>
+                                <input type="range" id="slide-pca-theta" min="0" max="180" step="1" value="0">
+                            </div>
+                            <div class="flex items-center justify-center bg-slate-100 dark:bg-slate-700/50 p-2 rounded-lg border border-slate-200 dark:border-slate-600/50">
+                                <span class="text-sm font-medium text-slate-600 dark:text-slate-300">Variance Retained: </span>
+                                <span id="val-pca-var" class="ml-2 text-lg font-bold text-blue-600 dark:text-blue-400">0.00</span>
+                            </div>
+                        </div>
+                    </figure>
+
+                    <h4>Finding the Weights: Gradient Descent</h4>
+                    <p>If neural networks rely on finding the optimal weighted combinations (\( w_i \)) to compress information, how do they actually discover these weights? The answer beautifully connects back to Taylor Series. Modern AI uses local derivatives to navigate the "loss landscape"—a mathematical terrain where the lowest valley represents the perfect set of weights.</p>
+                    <p>This process is formalized in an algorithm called Backpropagation and executed via Gradient Descent. Instead of trying to guess the global mathematical solution—which is impossible for billions of parameters—the AI relies entirely on local, infinitesimal knowledge to iteratively descend toward the optimal representation.</p>
+
+                    <!-- SIMULATION 7: Gradient Descent -->
+                    <figure class="my-10 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 select-none font-sans overflow-hidden relative">
+                        <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-emerald-500/10 dark:bg-emerald-400/10 rounded-full blur-xl"></div>
+                        <h4 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2 mt-0">Interactive: Gradient Descent</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-snug">Adjust the "Weight" parameter to see how local knowledge (the gradient/slope, marked by the tangent line) guides the AI to step towards the bottom of the Loss landscape where error is minimized.</p>
+                        
+                        <canvas id="sim-gradient" width="800" height="300" class="w-full h-auto bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 mb-6"></canvas>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-1">
+                                    <span>Current Weight (w)</span>
+                                    <span id="val-gd-w">3.00</span>
+                                </div>
+                                <input type="range" id="slide-gd-w" min="-5" max="5" step="0.1" value="3">
+                            </div>
+                            <div class="flex items-center justify-center bg-slate-100 dark:bg-slate-700/50 p-2 rounded-lg border border-slate-200 dark:border-slate-600/50 gap-4 text-sm font-medium text-slate-600 dark:text-slate-300">
+                                <div>Gradient: <span id="val-gd-grad" class="font-bold text-emerald-600 dark:text-emerald-400">6.00</span></div>
+                                <div>&rarr; Step: <span id="val-gd-step" class="font-bold text-emerald-600 dark:text-emerald-400">Left</span></div>
+                            </div>
+                        </div>
+                    </figure>
+
+                    <div class="insight-box">
+                        <h4>
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                            Mathematical Insight: The Chain Rule
+                        </h4>
+                        <p class="text-base m-0">Backpropagation is fundamentally just the Chain Rule from calculus applied millions of times. By calculating how a tiny change in a final output depends on a tiny change in an intermediate layer, the AI traces errors backward to their source.</p>
+                    </div>
+
+                    <div class="summary-box">
+                        <h4>Chapter 12 Summary</h4>
+                        <ul>
+                            <li>Neural Networks use features that act identically to mathematical moments.</li>
+                            <li>The weighted inputs of a neuron (\( \sum w_i x_i \)) are direct descendants of the center of mass.</li>
+                            <li>Algorithms like PCA compress high-dimensional data into essential underlying axes.</li>
+                            <li>Gradient Descent relies on Taylor's philosophy of using local derivatives to iteratively search for optimal solutions.</li>
+                        </ul>
+                    </div>
+                    <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
+                </section>
+
+                <!-- Chapter 13 -->
+                <section id="chapter-13" class="scroll-mt-24">
+                    <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 13</h2>
+                    <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">Mathematics as Information Compression</h3>
+                    <div class="ch-meta">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Est. read: 5 mins
+                    </div>
+
+                    <p>We have traveled a long path. The names changed. The symbols changed. But the underlying structure remained astonishingly stable. Compression does not simply mean discarding data; it means replacing raw information with organized structure. Mathematics discovers patterns.</p>
+                    
+                    <h4>Shannon's Revolution: Measuring Surprise</h4>
+                    <p>The recurring themes of compression revolve around a single, modern concept: Information. But what exactly is information? If someone tells you that 2 + 2 = 4, you learn almost nothing. Information is fundamentally tied to surprise and unpredictability.</p>
+                    
+                    <p>Claude Shannon revolutionized science by proving that information can be mathematically measured. If an event occurs with probability \( p \), its information content is given by \( -\log_2(p) \). The average amount of information required to describe a system is called Shannon Entropy (\( H \)).</p>
+
+                    <!-- SIMULATION 8: Shannon Entropy -->
+                    <figure class="my-10 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 select-none font-sans overflow-hidden relative">
+                        <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-amber-500/10 dark:bg-amber-400/10 rounded-full blur-xl"></div>
+                        <h4 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2 mt-0">Interactive: Shannon Entropy</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-snug">Adjust the probability \( p \) of an event (like a biased coin flip). Notice that when predictability is high (p near 0 or 1), the required Information Entropy drops. Maximum information (1 Bit) is needed only at maximum uncertainty (p = 0.5).</p>
+                        
+                        <canvas id="sim-entropy" width="800" height="300" class="w-full h-auto bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 mb-6"></canvas>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm font-semibold text-rose-600 dark:text-rose-400 mb-1">
+                                    <span>Probability (p)</span>
+                                    <span id="val-ent-p">0.50</span>
+                                </div>
+                                <input type="range" id="slide-ent-p" min="0" max="1" step="0.01" value="0.5">
+                            </div>
+                            <div class="flex items-center justify-center bg-slate-100 dark:bg-slate-700/50 p-2 rounded-lg border border-slate-200 dark:border-slate-600/50">
+                                <span class="text-sm font-medium text-slate-600 dark:text-slate-300">Entropy (H): </span>
+                                <span id="val-ent-h" class="ml-2 text-lg font-bold text-amber-600 dark:text-amber-500">1.00 Bits</span>
+                            </div>
+                        </div>
+                    </figure>
+
+                    <div class="history-box">
+                        <h4>
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                            Historical Note: Claude Shannon
+                        </h4>
+                        <p class="text-base m-0">In his 1948 paper, Shannon essentially invented the digital age. By stripping meaning and semantics away from messages, and focusing purely on the mathematical probability of signals, he proved the fundamental limits of data compression—setting the upper boundary for how tightly any piece of mathematical knowledge can compress reality.</p>
+                    </div>
+
+                    <div class="summary-box">
+                        <h4>Chapter 13 Summary</h4>
+                        <ul>
+                            <li>Mathematical compression is the act of replacing highly entropic raw data with organized structure.</li>
+                            <li>Shannon Entropy provides the strict mathematical framework for measuring predictability.</li>
+                            <li>A scientific theory is ultimately a highly compressed information file about nature.</li>
+                        </ul>
+                    </div>
+                    <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
+                </section>
+
+                <!-- Chapter 14 -->
+                <section id="chapter-14" class="scroll-mt-24">
+                    <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Chapter 14</h2>
+                    <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">The Grand Synthesis</h3>
+                    <div class="ch-meta">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Est. read: 5 mins
+                    </div>
+
+                    <p>We have now completed a journey spanning more than two thousand years. A common pattern repeatedly appeared. The history of mathematics can be viewed as the invention of increasingly powerful representations.</p>
+
+                    <h4>The Universal Diagram</h4>
+                    <p class="text-center font-bold my-8 text-xl text-blue-700 dark:text-blue-400">Reality &rarr; Measurements &rarr; Coefficients &rarr; Representation &rarr; Prediction</p>
+
+                    <h4>Category Theory: The Structure of Structures</h4>
+                    <p>If we strip away the physical interpretations of masses, probabilities, functions, and datasets, what remains? The relationships themselves. This led modern mathematics to Category Theory. Instead of studying isolated objects, it studies the network of transformations. Category theory reveals that knowledge is not a static repository of objects, but the dynamic flow of structured relationships, mapped using Functors acting as the ultimate probes.</p>
+
+                    <h4>From Moments to Mind</h4>
+                    <p>If knowledge is defined by structured relationships, a startling possibility emerges: perhaps mathematics operates this way because it perfectly mirrors the architecture of the human brain. We do not consciously process millions of raw optical pixels; we experience compressed summaries like "a room."</p>
+                    <p>When you view a flock of birds, your brain instantly extracts the average direction (the mean) and overall spread (the variance). The brain operates as an intuitive statistician, summarizing reality through low-order moments to avoid sensory overload. Concepts are compression. Thus, the moment is not just a tool of physics; it is the fundamental mechanism of intelligence itself.</p>
+
+                    <div class="takeaway-box">
+                        <h4>
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            Key Takeaway
+                        </h4>
+                        <p class="text-base m-0">The history of mathematics is, to a significant extent, the history of increasingly sophisticated methods for representing complexity through structured measurements. From Archimedes to AI to Neuroscience, the pattern holds true.</p>
+                    </div>
+
+                    <div class="summary-box">
+                        <h4>Chapter 14 Summary</h4>
+                        <ul>
+                            <li>The universal framework of science relies on compressing reality into representations capable of generating predictions.</li>
+                            <li>Category theory abstracts this process entirely, studying pure transformation structures regardless of physical origin.</li>
+                            <li>The human brain utilizes this exact compression architecture, framing cognition itself as mathematical dimensionality reduction.</li>
+                        </ul>
+                    </div>
+                    <div class="chapter-end"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
+                </section>
+
+                <!-- Epilogue -->
+                <section id="epilogue" class="scroll-mt-24 pb-20">
+                    <h2 class="font-sans text-3xl font-bold tracking-tight mb-2">Epilogue</h2>
+                    <h3 class="font-sans text-xl text-slate-500 dark:text-slate-400 mt-0 mb-6">The Central Formula of the Book</h3>
+                    
+                    <p>Although many equations appeared throughout our journey across centuries and sciences, one symbolic pattern quietly united them all:</p>
+                    
+                    <div class="bg-blue-50 dark:bg-blue-900/30 p-6 rounded-xl border border-blue-200 dark:border-blue-800 my-8 text-center shadow-inner">
+                        <span class="text-xl md:text-2xl font-bold text-blue-900 dark:text-blue-100">
+                            \[ \text{Knowledge} = \text{Object} \times \text{Probe} \]
+                        </span>
+                    </div>
+
+                    <p>followed by summation or integration.</p>
+                    <ul class="space-y-3">
+                        <li><strong>Moments:</strong> \( \int x^n f(x)\,dx \)</li>
+                        <li><strong>Fourier coefficients:</strong> \( \int f(x)\sin(nx)\,dx \)</li>
+                        <li><strong>Quantum expectations:</strong> \( \int x|\psi|^2dx \)</li>
+                        <li><strong>Machine-learning features:</strong> \( \sum w_i x_i \)</li>
+                    </ul>
+                    <p>In every case: An object is interrogated by a probe. The response becomes a number. The numbers become knowledge. And from those numbers, the entire architecture of science is built. Mathematics progresses by discovering better probes for extracting structure from complexity.</p>
+                </section>
+
+            </article>
+
+            <!-- Footer -->
+            <footer class="mt-20 border-t border-slate-200 dark:border-slate-800 pt-8 pb-12 font-sans text-center text-slate-500 dark:text-slate-400">
+                <p class="text-sm">&copy; 2026 Mathematics as Information Compression. All rights reserved.</p>
+                <p class="text-xs mt-2">The Definitive Interactive Edition</p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Back to top button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 p-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 z-50 transition-colors" aria-label="Back to top">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+    </button>
+
+    <!-- Script to handle interactions and Simulations -->
+    <script>
+        // --- 1. UI & Navigation Scripts ---
+        
+        // Reading Progress Bar & Back to top button visibility
+        const backToTopBtn = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+
+            if (winScroll > 500) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Dark Mode Toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        function isDarkMode() {
+            return document.documentElement.classList.contains('dark');
+        }
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            lightIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            darkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+            redrawAllSimulations();
+        });
+
+        // Scroll Spy for TOC
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.toc-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const sidebar = document.getElementById('sidebar');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('hidden');
+            if(!sidebar.classList.contains('hidden')){
+                sidebar.classList.add('absolute', 'z-40', 'bg-slate-50', 'dark:bg-slate-900', 'p-4', 'shadow-xl', 'rounded-b-lg', 'w-full', 'left-0', 'top-16');
+            } else {
+                sidebar.classList.remove('absolute', 'z-40', 'bg-slate-50', 'dark:bg-slate-900', 'p-4', 'shadow-xl', 'rounded-b-lg', 'w-full', 'left-0', 'top-16');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if(window.innerWidth < 768) {
+                    sidebar.classList.add('hidden');
+                }
+            })
+        });
+
+        // --- 2. Interactive Simulations (Canvas + JS) ---
+        
+        function getStyles() {
+            const dark = isDarkMode();
+            return {
+                grid: dark ? '#334155' : '#e2e8f0',
+                axis: dark ? '#64748b' : '#94a3b8',
+                text: dark ? '#94a3b8' : '#64748b',
+                primary: dark ? '#60a5fa' : '#2563eb', // Blue
+                secondary: dark ? '#818cf8' : '#4f46e5', // Indigo
+                tertiary: dark ? '#f43f5e' : '#e11d48', // Rose
+                quaternary: dark ? '#f59e0b' : '#d97706', // Amber
+                quinary: dark ? '#34d399' : '#059669', // Emerald
+                senary: dark ? '#e879f9' : '#c026d3', // Fuchsia
+                background: dark ? '#0f172a' : '#f8fafc' // Slate 900 / 50
+            };
+        }
+
+        function drawGridAndAxes(ctx, w, h, originX, originY, styles, stepX = 40, stepY = 40) {
+            ctx.beginPath();
+            ctx.strokeStyle = styles.grid;
+            ctx.lineWidth = 1;
+            for(let x = originX % stepX; x < w; x += stepX) {
+                ctx.moveTo(x, 0); ctx.lineTo(x, h);
+            }
+            for(let y = originY % stepY; y < h; y += stepY) {
+                ctx.moveTo(0, y); ctx.lineTo(w, y);
+            }
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.axis;
+            ctx.lineWidth = 2;
+            ctx.moveTo(0, originY); ctx.lineTo(w, originY); 
+            ctx.moveTo(originX, 0); ctx.lineTo(originX, h); 
+            ctx.stroke();
+        }
+
+        // SIMULATION 1: The Lever
+        function drawLever() {
+            const canvas = document.getElementById('sim-lever');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            const styles = getStyles();
+
+            const m1 = parseFloat(document.getElementById('slide-m1').value);
+            const x1 = parseFloat(document.getElementById('slide-x1').value);
+            const m2 = parseFloat(document.getElementById('slide-m2').value);
+            const x2 = parseFloat(document.getElementById('slide-x2').value);
+
+            document.getElementById('val-m1').textContent = m1 + ' kg';
+            document.getElementById('val-x1').textContent = x1.toFixed(1) + ' m';
+            document.getElementById('val-m2').textContent = m2 + ' kg';
+            document.getElementById('val-x2').textContent = x2.toFixed(1) + ' m';
+
+            const cm = ((m1 * x1) + (m2 * x2)) / (m1 + m2);
+            document.getElementById('val-cm').textContent = cm.toFixed(2) + ' m';
+
+            ctx.clearRect(0, 0, w, h);
+            
+            const margin = 50;
+            const mapX = (val) => margin + (val / 10) * (w - 2 * margin);
+            const beamY = h - 60;
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.grid;
+            ctx.lineWidth = 1;
+            for(let x = margin; x <= w-margin; x += (w-2*margin)/10) {
+                ctx.moveTo(x, 0); ctx.lineTo(x, h);
+            }
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.text;
+            ctx.lineWidth = 6;
+            ctx.lineCap = 'round';
+            ctx.moveTo(mapX(0), beamY);
+            ctx.lineTo(mapX(10), beamY);
+            ctx.stroke();
+
+            const cmX = mapX(cm);
+            ctx.beginPath();
+            ctx.fillStyle = styles.text;
+            ctx.moveTo(cmX, beamY + 5);
+            ctx.lineTo(cmX - 20, beamY + 45);
+            ctx.lineTo(cmX + 20, beamY + 45);
+            ctx.fill();
+
+            const s1 = 30 * Math.sqrt(m1/10); 
+            const s2 = 30 * Math.sqrt(m2/10);
+
+            ctx.fillStyle = styles.primary;
+            ctx.beginPath();
+            ctx.roundRect(mapX(x1) - s1/2, beamY - s1 - 3, s1, s1, 4);
+            ctx.fill();
+
+            ctx.fillStyle = styles.secondary;
+            ctx.beginPath();
+            ctx.roundRect(mapX(x2) - s2/2, beamY - s2 - 3, s2, s2, 4);
+            ctx.fill();
+
+            ctx.fillStyle = styles.axis;
+            ctx.font = "12px sans-serif";
+            ctx.textAlign = "center";
+            for(let i=0; i<=10; i++) {
+                ctx.fillText(i, mapX(i), beamY + 65);
+                ctx.beginPath();
+                ctx.arc(mapX(i), beamY, 2, 0, Math.PI*2);
+                ctx.fill();
+            }
+        }
+
+        // SIMULATION 2: Taylor Series
+        function fact(num) {
+            let rval = 1;
+            for (let i = 2; i <= num; i++) rval = rval * i;
+            return rval;
+        }
+
+        function drawTaylor() {
+            const canvas = document.getElementById('sim-taylor');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            const styles = getStyles();
+
+            const n = parseInt(document.getElementById('slide-taylor-n').value);
+            document.getElementById('val-taylor-n').textContent = 'Order: ' + n;
+
+            let eqStr = "f(x) &approx; ";
+            for(let i=0; i<= Math.floor((n-1)/2); i++) {
+                let p = 2*i + 1;
+                let sign = i % 2 === 0 ? " + " : " - ";
+                if(i===0) sign = "";
+                let denominator = p === 1 ? "" : " / " + p + "!";
+                eqStr += sign + "x" + (p > 1 ? "<sup>" + p + "</sup>" : "") + denominator;
+            }
+            document.getElementById('val-taylor-eq').innerHTML = eqStr;
+
+            ctx.clearRect(0, 0, w, h);
+
+            const minX = -10, maxX = 10;
+            const minY = -3, maxY = 3;
+            const mapX = x => ((x - minX) / (maxX - minX)) * w;
+            const mapY = y => h - ((y - minY) / (maxY - minY)) * h;
+
+            drawGridAndAxes(ctx, w, h, mapX(0), mapY(0), styles, w/20, h/6);
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.text; 
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 5]);
+            for(let px=0; px<=w; px+=2) {
+                let x = minX + (px/w)*(maxX - minX);
+                let y = Math.sin(x);
+                if(px===0) ctx.moveTo(px, mapY(y));
+                else ctx.lineTo(px, mapY(y));
+            }
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.quinary; 
+            ctx.lineWidth = 3;
+            for(let px=0; px<=w; px+=2) {
+                let x = minX + (px/w)*(maxX - minX);
+                let y = 0;
+                for(let k=0; k<= Math.floor((n-1)/2); k++) {
+                    let term = Math.pow(-1, k) * Math.pow(x, 2*k+1) / fact(2*k+1);
+                    y += term;
+                }
+                let py = mapY(y);
+                if(py < -h) py = -h;
+                if(py > 2*h) py = 2*h;
+                if(px===0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
+            }
+            ctx.stroke();
+        }
+
+        // SIMULATION 3: Gaussian
+        function drawGaussian() {
+            const canvas = document.getElementById('sim-gaussian');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            const styles = getStyles();
+
+            const mu = parseFloat(document.getElementById('slide-gauss-mu').value);
+            const vr = parseFloat(document.getElementById('slide-gauss-var').value);
+            const sigma = Math.sqrt(vr);
+
+            document.getElementById('val-gauss-mu').textContent = mu.toFixed(1);
+            document.getElementById('val-gauss-var').textContent = vr.toFixed(1);
+
+            ctx.clearRect(0, 0, w, h);
+
+            const minX = -6, maxX = 6;
+            const maxY = 1.0;
+            const originY = h - 30;
+            
+            const mapX = x => ((x - minX) / (maxX - minX)) * w;
+            const mapY = y => originY - (y / maxY) * (originY - 20);
+
+            drawGridAndAxes(ctx, w, h, mapX(0), originY, styles, w/12, (originY - 20)/4);
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.tertiary; 
+            ctx.lineWidth = 3;
+            
+            let sigmaPath = new Path2D();
+            let firstSigma = true;
+
+            for(let px=0; px<=w; px+=2) {
+                let x = minX + (px/w)*(maxX - minX);
+                let y = (1 / (sigma * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * Math.pow((x - mu) / sigma, 2));
+                let py = mapY(y);
+                
+                if(px===0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
+
+                if(x >= mu - sigma && x <= mu + sigma) {
+                    if(firstSigma) {
+                        sigmaPath.moveTo(px, originY);
+                        sigmaPath.lineTo(px, py);
+                        firstSigma = false;
+                    } else {
+                        sigmaPath.lineTo(px, py);
+                    }
+                    if (x + ((maxX - minX)*2/w) > mu + sigma) {
+                         sigmaPath.lineTo(px, originY);
+                    }
+                }
+            }
+            ctx.stroke();
+
+            sigmaPath.closePath();
+            ctx.fillStyle = isDarkMode() ? 'rgba(244, 63, 94, 0.2)' : 'rgba(225, 29, 72, 0.15)'; 
+            ctx.fill(sigmaPath);
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.tertiary;
+            ctx.setLineDash([4, 4]);
+            ctx.moveTo(mapX(mu), originY);
+            ctx.lineTo(mapX(mu), mapY( (1 / (sigma * Math.sqrt(2 * Math.PI))) ));
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.fillStyle = styles.text;
+            ctx.font = "14px sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText("μ", mapX(mu), originY + 20);
+            ctx.fillText("-1σ", mapX(mu - sigma), originY + 20);
+            ctx.fillText("+1σ", mapX(mu + sigma), originY + 20);
+        }
+
+        // SIMULATION 4: Fourier
+        function drawFourier() {
+            const canvas = document.getElementById('sim-fourier');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            const styles = getStyles();
+
+            const N = parseInt(document.getElementById('slide-fourier-n').value);
+            document.getElementById('val-fourier-n').textContent = (N===1) ? '1 Harmonic' : Math.ceil(N/2) + ' Harmonics';
+
+            ctx.clearRect(0, 0, w, h);
+
+            const minX = 0, maxX = 4 * Math.PI;
+            const minY = -1.5, maxY = 1.5;
+            const mapX = x => ((x - minX) / (maxX - minX)) * w;
+            const mapY = y => h - ((y - minY) / (maxY - minY)) * h;
+
+            drawGridAndAxes(ctx, w, h, mapX(0), mapY(0), styles, w/8, h/6);
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.text;
+            ctx.lineWidth = 1;
+            ctx.setLineDash([5, 5]);
+            for(let x=minX; x<=maxX; x+=0.05) {
+                let idealY = Math.sin(x) >= 0 ? 1 : -1;
+                idealY = idealY * (4/Math.PI) * 0.785; 
+                if(x===minX) ctx.moveTo(mapX(x), mapY(idealY));
+                else ctx.lineTo(mapX(x), mapY(idealY));
+            }
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.senary; 
+            ctx.lineWidth = 3;
+            for(let px=0; px<=w; px+=2) {
+                let x = minX + (px/w)*(maxX - minX);
+                let y = 0;
+                for(let n=1; n<=N; n+=2) {
+                    y += Math.sin(n * x) / n;
+                }
+                y *= (4 / Math.PI);
+                
+                if(px===0) ctx.moveTo(px, mapY(y));
+                else ctx.lineTo(px, mapY(y));
+            }
+            ctx.stroke();
+        }
+
+        // SIMULATION 5: Quantum
+        function drawQuantum() {
+            const canvas = document.getElementById('sim-quantum');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            const styles = getStyles();
+
+            const n = parseInt(document.getElementById('slide-quantum-n').value);
+            document.getElementById('val-quantum-n').textContent = 'State: n = ' + n;
+            document.getElementById('val-quantum-spread').innerHTML = '&langle;x&sup2;&rangle; &prop; ' + (n + 0.5).toFixed(1);
+
+            ctx.clearRect(0, 0, w, h);
+
+            const minX = -4, maxX = 4;
+            const originY = h - 20;
+            const mapX = x => ((x - minX) / (maxX - minX)) * w;
+            
+            const scales = [0.8, 0.5, 0.125, 0.02, 0.003, 0.0003];
+            const mapY = y => originY - (y / 1.0) * (originY - 20);
+
+            drawGridAndAxes(ctx, w, h, mapX(0), originY, styles, w/8, (originY - 20)/4);
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.secondary; 
+            ctx.lineWidth = 3;
+            
+            let fillPath = new Path2D();
+            fillPath.moveTo(0, originY);
+            
+            for(let px=0; px<=w; px+=2) {
+                let x = minX + (px/w)*(maxX - minX);
+                
+                let H = 1;
+                if (n === 1) H = 2 * x;
+                else if (n === 2) H = 4 * x * x - 2;
+                else if (n === 3) H = 8 * x * x * x - 12 * x;
+                else if (n === 4) H = 16 * Math.pow(x,4) - 48 * x * x + 12;
+                else if (n === 5) H = 32 * Math.pow(x,5) - 160 * Math.pow(x,3) + 120 * x;
+                
+                let psi = H * Math.exp(-0.5 * x * x);
+                let prob = (psi * psi) * scales[n];
+                
+                let py = mapY(prob);
+                if(px===0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
+                fillPath.lineTo(px, py);
+            }
+            ctx.stroke();
+            
+            fillPath.lineTo(w, originY);
+            fillPath.closePath();
+            ctx.fillStyle = isDarkMode() ? 'rgba(129, 140, 248, 0.2)' : 'rgba(79, 70, 229, 0.15)';
+            ctx.fill(fillPath);
+        }
+
+        // SIMULATION 6: PCA
+        let pcaPoints = [];
+        function generatePCAPoints() {
+            pcaPoints = [];
+            for(let i=0; i<60; i++) {
+                let u = (Math.random() - 0.5) * 14; 
+                let v = (Math.random() - 0.5) * 3; 
+                let x = u * Math.cos(Math.PI/4) - v * Math.sin(Math.PI/4);
+                let y = u * Math.sin(Math.PI/4) + v * Math.cos(Math.PI/4);
+                pcaPoints.push({x, y});
+            }
+        }
+
+        function drawPCA() {
+            const canvas = document.getElementById('sim-pca');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            const styles = getStyles();
+
+            const thetaDeg = parseFloat(document.getElementById('slide-pca-theta').value);
+            const theta = thetaDeg * Math.PI / 180;
+            document.getElementById('val-pca-theta').innerHTML = thetaDeg + '&deg;';
+
+            ctx.clearRect(0, 0, w, h);
+            const originX = w/2, originY = h/2;
+            const scale = w / 20;
+
+            drawGridAndAxes(ctx, w, h, originX, originY, styles, scale*2, scale*2);
+
+            const lineLen = 15;
+            const lx = lineLen * Math.cos(theta);
+            const ly = lineLen * Math.sin(theta);
+            
+            ctx.beginPath();
+            ctx.strokeStyle = styles.primary;
+            ctx.lineWidth = 3;
+            ctx.moveTo(originX - lx * scale, originY + ly * scale); 
+            ctx.lineTo(originX + lx * scale, originY - ly * scale);
+            ctx.stroke();
+
+            let variance = 0;
+            
+            pcaPoints.forEach(p => {
+                const d = p.x * Math.cos(theta) + p.y * Math.sin(theta);
+                variance += d * d;
+                
+                const pxX = originX + p.x * scale;
+                const pxY = originY - p.y * scale;
+                const projX = originX + (d * Math.cos(theta)) * scale;
+                const projY = originY - (d * Math.sin(theta)) * scale;
+                
+                ctx.beginPath();
+                ctx.strokeStyle = styles.text + '80';
+                ctx.setLineDash([2, 2]);
+                ctx.moveTo(pxX, pxY);
+                ctx.lineTo(projX, projY);
+                ctx.stroke();
+                ctx.setLineDash([]);
+                
+                ctx.beginPath();
+                ctx.fillStyle = styles.secondary;
+                ctx.arc(pxX, pxY, 4, 0, Math.PI*2);
+                ctx.fill();
+                
+                ctx.beginPath();
+                ctx.fillStyle = styles.primary;
+                ctx.arc(projX, projY, 3, 0, Math.PI*2);
+                ctx.fill();
+            });
+            
+            variance = variance / pcaPoints.length;
+            document.getElementById('val-pca-var').textContent = variance.toFixed(2);
+        }
+
+        // SIMULATION 7: Gradient Descent
+        function drawGradientDescent() {
+            const canvas = document.getElementById('sim-gradient');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            const styles = getStyles();
+
+            const wt = parseFloat(document.getElementById('slide-gd-w').value);
+            document.getElementById('val-gd-w').textContent = wt.toFixed(2);
+            
+            const loss = wt * wt;
+            const gradient = 2 * wt;
+            document.getElementById('val-gd-grad').textContent = gradient.toFixed(2);
+            
+            const stepDir = gradient > 0 ? "Left" : (gradient < 0 ? "Right" : "Optimal!");
+            document.getElementById('val-gd-step').textContent = stepDir;
+            
+            ctx.clearRect(0, 0, w, h);
+            
+            const minX = -6, maxX = 6;
+            const maxY = 36;
+            const originX = w / 2;
+            const originY = h - 20;
+
+            const mapX = x => originX + (x / maxX) * (w / 2);
+            const mapY = y => originY - (y / maxY) * (originY - 20);
+
+            drawGridAndAxes(ctx, w, h, originX, originY, styles, w/12, (originY - 20)/4);
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.text;
+            ctx.lineWidth = 3;
+            for(let px=0; px<=w; px+=2) {
+                let x = minX + (px/w)*(maxX - minX);
+                let y = x * x;
+                let py = mapY(y);
+                if(px===0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
+            }
+            ctx.stroke();
+
+            const pxWt = mapX(wt);
+            const pyLoss = mapY(loss);
+
+            const tanLen = 1.5; 
+            const tanX1 = wt - tanLen;
+            const tanY1 = loss - gradient * tanLen;
+            const tanX2 = wt + tanLen;
+            const tanY2 = loss + gradient * tanLen;
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.quinary; 
+            ctx.lineWidth = 3;
+            ctx.moveTo(mapX(tanX1), mapY(tanY1));
+            ctx.lineTo(mapX(tanX2), mapY(tanY2));
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.fillStyle = styles.primary;
+            ctx.arc(pxWt, pyLoss, 8, 0, Math.PI*2);
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.strokeStyle = styles.text + '80';
+            ctx.setLineDash([4, 4]);
+            ctx.moveTo(pxWt, originY);
+            ctx.lineTo(pxWt, pyLoss);
+            ctx.lineTo(originX, pyLoss);
+            ctx.stroke();
+            ctx.setLineDash([]);
+        }
+
+        // SIMULATION 8: Entropy
+        function drawEntropy() {
+            const canvas = document.getElementById('sim-entropy');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            const styles = getStyles();
+
+            const p = parseFloat(document.getElementById('slide-ent-p').value);
+            document.getElementById('val-ent-p').textContent = p.toFixed(2);
+            
+            let entropy = 0;
+            if (p > 0 && p < 1) {
+                entropy = -p * Math.log2(p) - (1-p) * Math.log2(1-p);
+            }
+            document.getElementById('val-ent-h').textContent = entropy.toFixed(2) + " Bits";
+
+            ctx.clearRect(0, 0, w, h);
+
+            const padding = 40;
+            const plotW = w - padding * 2;
+            const plotH = h - padding * 2;
+            const originX = padding;
+            const originY = h - padding;
+
+            const mapX = val => originX + val * plotW;
+            const mapY = val => originY - val * plotH;
+
+            drawGridAndAxes(ctx, w, h, originX, originY, styles, plotW/4, plotH/4);
+            
+            ctx.fillStyle = styles.text;
+            ctx.font = "12px sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText("0", mapX(0), originY + 15);
+            ctx.fillText("0.5", mapX(0.5), originY + 15);
+            ctx.fillText("1", mapX(1), originY + 15);
+            ctx.textAlign = "right";
+            ctx.fillText("1 Bit", originX - 10, mapY(1) + 4);
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.quaternary; 
+            ctx.lineWidth = 3;
+            for(let px=0; px<=plotW; px+=2) {
+                let px_p = px / plotW;
+                let py_H = 0;
+                if(px_p > 0 && px_p < 1) {
+                    py_H = -px_p * Math.log2(px_p) - (1-px_p) * Math.log2(1-px_p);
+                }
+                let cx = mapX(px_p);
+                let cy = mapY(py_H);
+                if(px===0) ctx.moveTo(cx, cy);
+                else ctx.lineTo(cx, cy);
+            }
+            ctx.stroke();
+
+            const cxP = mapX(p);
+            const cyH = mapY(entropy);
+
+            ctx.beginPath();
+            ctx.strokeStyle = styles.primary;
+            ctx.setLineDash([4, 4]);
+            ctx.moveTo(cxP, originY);
+            ctx.lineTo(cxP, cyH);
+            ctx.lineTo(originX, cyH);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.beginPath();
+            ctx.fillStyle = styles.primary;
+            ctx.arc(cxP, cyH, 6, 0, Math.PI*2);
+            ctx.fill();
+        }
+
+        // Init
+        let resizeTimer;
+        function redrawAllSimulations() {
+            drawLever(); drawTaylor(); drawGaussian(); drawFourier();
+            drawQuantum(); drawPCA(); drawGradientDescent(); drawEntropy();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            generatePCAPoints();
+            
+            const listeners = [
+                ['slide-m1', drawLever], ['slide-x1', drawLever],
+                ['slide-m2', drawLever], ['slide-x2', drawLever],
+                ['slide-taylor-n', drawTaylor],
+                ['slide-gauss-mu', drawGaussian], ['slide-gauss-var', drawGaussian],
+                ['slide-fourier-n', drawFourier],
+                ['slide-quantum-n', drawQuantum],
+                ['slide-pca-theta', drawPCA],
+                ['slide-gd-w', drawGradientDescent],
+                ['slide-ent-p', drawEntropy]
+            ];
+
+            listeners.forEach(([id, fn]) => {
+                const el = document.getElementById(id);
+                if(el) el.addEventListener('input', fn);
+            });
+
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(redrawAllSimulations, 100);
+            });
+
+            redrawAllSimulations();
+        });
+    </script>
+</body>
+</html>
